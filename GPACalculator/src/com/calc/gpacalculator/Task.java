@@ -2,37 +2,37 @@ package com.calc.gpacalculator;
 
 public class Task {
 
-	private String name;
-	private int average;
+	private String task_name;
+	private int task_average;
 	private int total_marks;
 	
 	
-	public Task(String className, int classAverage, int classTotal){
+	public Task(String class_name, int class_average, int class_total){
 		
-		this.name = className;
-		this.average = classAverage;
-		this.total_marks = classTotal;
+		this.task_name = class_name;
+		this.task_average = class_average; 
+		this.total_marks = class_total;
 		
 	}
 
 
 	public String getName() {
-		return name;
+		return task_name;
 	}
 
 
 	public void setName(String name) {
-		this.name = name;
+		this.task_name = name;
 	}
 
 
 	public int getAverage() {
-		return average;
+		return task_average;
 	}
 
 
 	public void setAverage(int average) {
-		this.average = average;
+		this.task_average = average;
 	}
 
 

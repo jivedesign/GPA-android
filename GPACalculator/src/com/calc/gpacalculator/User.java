@@ -8,7 +8,7 @@ public class User {
 	private ArrayList <Course> semester;
 	private int gpa;
 	
-	public User(String user_name, ArrayList semester, int gpa){
+	public User(String user_name, ArrayList<Course> semester, int gpa){
 		this.user_name = user_name;
 		this.semester = semester;
 		this.gpa = gpa;

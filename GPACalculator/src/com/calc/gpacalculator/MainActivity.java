@@ -1,16 +1,62 @@
 package com.calc.gpacalculator;
 
+import java.util.ArrayList;
+
+import controller.Gpa_ListAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.*;
 
 public class MainActivity extends ActionBarActivity {
 
+	// MOVE TO TASKACTIVITY.JAVA //
+	
+	private Button add_task;
+	private ListView task_list;
+	
+	private Gpa_ListAdapter adapter;
+	
+	// END OF MOVE //
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task_activity);
+		
+		/// MOVE TO TASKACTIVITY.JAVA ///
+		
+		add_task = (Button) findViewById(R.id.add_taskButton);
+		//task_list = (ListView) findViewById(R.id.view_tasklist);
+		
+		
+			// CREATE IN NEW SETUP ADAPTER METHOD //
+		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, new ArrayList<Task>());
+		ListView activity_taskview = (ListView) findViewById(R.id.view_tasklist);
+		activity_taskview.setAdapter(adapter);
+			//	END OF NEW METHOD //
+		
+			//	CREATE IN NEW SETUP BUTTON METHOD //
+		add_task.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				adapter.insert(new Task("", 0, 0), 0);
+				
+			}
+			
+		});
+		
+			//	END OF NEW METHOD	//
+		
+		
+		//// END OF MOVE ////
+		
+		
 	}
 
 	@Override

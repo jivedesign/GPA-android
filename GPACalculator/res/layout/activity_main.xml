@@ -15,7 +15,7 @@
         android:text="@string/hello_world" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/task_nameedit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
@@ -32,8 +32,8 @@
         android:id="@+id/calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/task_nameedit"
+        android:layout_below="@+id/task_nameedit"
         android:layout_marginTop="25dp"
         android:text="Calculate" />
 
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/calculate"
-        android:layout_toRightOf="@+id/editText1"
+        android:layout_toRightOf="@+id/task_nameedit"
         android:text="/10"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

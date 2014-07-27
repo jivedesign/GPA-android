@@ -3,8 +3,8 @@ package com.calc.gpacalculator;
 public class Task {
 
 	private String task_name;
-	private int task_average;
-	private int total_marks;
+	private float task_average;
+	private float total_marks;
 	
 	
 	public Task(String class_name, int class_average, int class_total){
@@ -26,23 +26,23 @@ public class Task {
 	}
 
 
-	public int getAverage() {
+	public float getAverage() {
 		return task_average;
 	}
 
 
-	public void setAverage(int average) {
+	public void setAverage(float average) {
 		this.task_average = average;
 	}
 
 
-	public int getTotal_marks() {
+	public float getTotal_marks() {
 		return total_marks;
 	}
 
 
-	public void setTotal_marks(int total_marks) {
-		this.total_marks = total_marks;
+	public void setTotal_marks(float f) {
+		this.total_marks = f;
 	}
 	
 	

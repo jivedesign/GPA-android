@@ -6,23 +6,23 @@
     tools:context="com.calc.gpacalculator.MainActivity" >
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/view_tasklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/add_taskButton"
         tools:listitem="@layout/task_entity" >
 
     </ListView>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/add_taskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Button" />
+        android:text="Add Task" />
 
 </RelativeLayout>

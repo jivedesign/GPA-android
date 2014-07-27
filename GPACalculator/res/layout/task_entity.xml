@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:hint="Task name"
+        android:inputType="numberDecimal"
+        android:text="TASK" />
+
+    <EditText
+        android:id="@+id/task_name"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:text="mark" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="/"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <EditText
+        android:id="@+id/editText3"
+        android:layout_width="0sp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:text="100" />
+
+      
+
+</LinearLayout>

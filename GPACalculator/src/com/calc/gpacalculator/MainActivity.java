@@ -31,12 +31,12 @@ public class MainActivity extends ActionBarActivity {
 		/// MOVE TO TASKACTIVITY.JAVA ///
 		
 		add_task = (Button) findViewById(R.id.add_taskButton);
-		//task_list = (ListView) findViewById(R.id.view_tasklist);
+		task_list = (ListView) findViewById(R.id.view_tasklist);
 		
 		
 			// CREATE IN NEW SETUP ADAPTER METHOD //
 		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, new ArrayList<Task>());
-		ListView activity_taskview = (ListView) findViewById(R.id.view_tasklist);
+		ListView activity_taskview = task_list;
 		activity_taskview.setAdapter(adapter);
 			//	END OF NEW METHOD //
 		

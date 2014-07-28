@@ -10,9 +10,8 @@
         android:layout_height="fill_parent"
         android:layout_weight="2"
         android:gravity="center_vertical"
-        android:hint="Task name"
-        android:inputType="numberDecimal"
-        />
+        android:hint="Task"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/your_markedit"
@@ -38,7 +37,6 @@
          android:layout_height="fill_parent"
          android:layout_weight="2"
          android:gravity="center"
-         android:inputType="numberDecimal"
-         android:text="100" />
+         android:inputType="numberDecimal" />
 
 </LinearLayout>

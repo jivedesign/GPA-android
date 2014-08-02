@@ -9,41 +9,13 @@
     tools:context="com.calc.gpacalculator.MainActivity" >
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-    <EditText
-        android:id="@+id/task_nameedit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="Enter mark"
-        android:inputType="numberDecimal" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/calculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/task_nameedit"
-        android:layout_below="@+id/task_nameedit"
-        android:layout_marginTop="25dp"
-        android:text="Calculate" />
-
-    <TextView
-        android:id="@+id/total_mark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/calculate"
-        android:layout_toRightOf="@+id/task_nameedit"
-        android:text="/10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="175dp"
+        android:text="GPA"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+  
 </RelativeLayout>

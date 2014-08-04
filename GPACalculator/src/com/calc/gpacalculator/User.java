@@ -6,7 +6,7 @@ public class User {
 
 	private String user_name;
 	private ArrayList <Course> semester;
-	private int gpa;
+	private float gpa;
 	
 	public User(String user_name, ArrayList<Course> semester, int gpa){
 		this.user_name = user_name;
@@ -30,11 +30,11 @@ public class User {
 		this.semester = semester;
 	}
 
-	public int getGpa() {
+	public float getGpa() {
 		return gpa;
 	}
 
-	public void setGpa(int gpa) {
+	public void setGpa(float gpa) {
 		this.gpa = gpa;
 	}
 	

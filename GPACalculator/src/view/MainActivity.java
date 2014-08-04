@@ -1,10 +1,17 @@
-package com.calc.gpacalculator;
+package view;
 
 import java.util.ArrayList;
+
+import com.calc.gpacalculator.R;
+import com.calc.gpacalculator.R.id;
+import com.calc.gpacalculator.R.layout;
+import com.calc.gpacalculator.R.menu;
+import com.calc.gpacalculator.TaskActivity;
 
 import controller.Gpa_ListAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,51 +22,17 @@ import android.widget.*;
 
 public class MainActivity extends ActionBarActivity {
 
-	// MOVE TO TASKACTIVITY.JAVA //
+
 	
-	private Button add_task;
-	private ListView task_list;
-	
-	private Gpa_ListAdapter adapter;
-	
-	// END OF MOVE //
-	
+	private TextView gpa_view;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		// TO TEST CODE BELOW, CHANGE setContentView(R.layout.activity_main); TO setContentView(R.layout.task_activity);
-		
-//		/// MOVE TO TASKACTIVITY.JAVA ///
-//		
-//		add_task = (Button) findViewById(R.id.add_taskButton);
-//		task_list = (ListView) findViewById(R.id.view_tasklist);
-//		
-//		
-//			// CREATE IN NEW SETUP ADAPTER METHOD //
-//		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, new ArrayList<Task>());
-//		ListView activity_taskview = task_list;
-//		activity_taskview.setAdapter(adapter);
-//			//	END OF NEW METHOD //
-//		
-//			//	CREATE IN NEW SETUP BUTTON METHOD //
-//		add_task.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View v) {
-//				
-//				adapter.insert(new Task("", 0, 0), 0);
-//				
-//			}
-//			
-//		});
-//		
-//			//	END OF NEW METHOD	//
-//		
-//		
-//		//// END OF MOVE ////
-		
+		gpa_view = (TextView) findViewById(R.id.main_gpa);
+
 		
 	}
 
@@ -86,12 +59,11 @@ public class MainActivity extends ActionBarActivity {
 		switch (item.getItemId()) {
 	  
 	    case R.id.itemid_0:
-	      Toast.makeText(this, "Item1 selected", Toast.LENGTH_SHORT)
-	          .show();
+	      gpa_view.setText("4.0");
 	      break;
-	    case R.id.itemid_1:
-		      Toast.makeText(this, "Item1 selected", Toast.LENGTH_SHORT)
-		          .show();
+	    case R.id.itemid_1:   	
+	    	Intent intent = new Intent(this, TaskActivity.class);
+	    	startActivity(intent);
 		      break;
 	    case R.id.itemid_2:
 		      Toast.makeText(this, "Item1 selected", Toast.LENGTH_SHORT)

@@ -6,7 +6,7 @@
         android:orderInCategory="0"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/itemid_1"
-        android:title="Action Item 1"
+        android:title="switch task_activity"
         android:icon="@drawable/ic_launcher"
         android:orderInCategory="0"
         app:showAsAction="ifRoom" />

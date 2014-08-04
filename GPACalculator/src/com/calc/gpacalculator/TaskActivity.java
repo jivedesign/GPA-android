@@ -1,21 +1,54 @@
 package com.calc.gpacalculator;
 
+import java.util.ArrayList;
+import controller.Gpa_ListAdapter;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import controller.*;
 
 public class TaskActivity extends Activity {
 
+	private Button add_task;
+	private ListView task_list;
+	private Gpa_ListAdapter adapter;
+	
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.task_activity);
 	    
-	    
-	    
-	    
-	
-	    // TODO Auto-generated method stub
+		add_task = (Button) findViewById(R.id.add_taskButton);
+		task_list = (ListView) findViewById(R.id.view_tasklist);
+		
+		setup_adapter();
+		setup_button();
+		
 	}
 
+	private void setup_adapter(){
+		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, new ArrayList<Task>());
+		ListView activity_taskview = task_list;
+		activity_taskview.setAdapter(adapter);
+	}
+	
+	private void setup_button(){
+	add_task.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				adapter.insert(new Task("", 0, 0), 0);
+				
+			}
+			
+		});
+	}
+	
 }

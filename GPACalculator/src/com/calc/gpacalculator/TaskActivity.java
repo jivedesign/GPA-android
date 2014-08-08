@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import controller.*;
 
 public class TaskActivity extends Activity {
@@ -51,4 +52,17 @@ public class TaskActivity extends Activity {
 		});
 	}
 	
+	@Override
+	public void onPause() {
+	    super.onPause();  // Always call the superclass method first
+	    
+	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  // Always call the superclass method first
+	    Toast.makeText(this, "resumed", Toast.LENGTH_SHORT)
+        .show();
+	   
+	}
 }

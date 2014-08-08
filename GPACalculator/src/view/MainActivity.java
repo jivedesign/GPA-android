@@ -76,4 +76,13 @@ public class MainActivity extends ActionBarActivity {
 	    }
 		return true;
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  // Always call the superclass method first
+	    Toast.makeText(this, "resumed", Toast.LENGTH_SHORT)
+        .show();
+	   
+	}
+	
 }

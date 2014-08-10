@@ -1,12 +1,15 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.calc.gpacalculator.R;
 import com.calc.gpacalculator.R.id;
 import com.calc.gpacalculator.R.layout;
 import com.calc.gpacalculator.R.menu;
+import com.calc.gpacalculator.Task;
 import com.calc.gpacalculator.TaskActivity;
+import com.calc.gpacalculator.TaskDataSource;
 
 import controller.Gpa_ListAdapter;
 import android.support.v7.app.ActionBar;
@@ -20,19 +23,60 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
+
+import java.util.List;
+import java.util.Random;
+
+import android.app.Activity.*;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+
 public class MainActivity extends ActionBarActivity {
 
 
 	
-	private TextView gpa_view;
+	//private TextView gpa_view;
 
+	private ListView testView;
+	
+	public List<Task> values;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		gpa_view = (TextView) findViewById(R.id.main_gpa);
-
+		//gpa_view = (TextView) findViewById(R.id.main_gpa);
+		this.deleteDatabase("tasks.db");
+		TaskDataSource tds = new TaskDataSource(this);
+		tds.open();
+		
+		
+		
+		tds.createTask(0, "exam1", 10, 10, "Cmput101", "Fall2013");
+		tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
+		tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
+		
+		values = tds.getAllTasks();
+		//this.deleteDatabase("tasks.db");
+	
+		
+		// use the SimpleCursorAdapter to show the
+	    // elements in a ListView
+//	    ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this,
+//	        android.R.layout.simple_list_item_1, values);
+//	    setListAdapter(adapter);
+		
+		List<String> ls = new ArrayList();
+		ls.add(values.get(0).getName());
+		
+		testView = (ListView) findViewById(R.id.abcdef);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ls);
+		
+		adapter.toString();
+		
+		testView.setAdapter(adapter);
 		
 	}
 
@@ -59,15 +103,14 @@ public class MainActivity extends ActionBarActivity {
 		switch (item.getItemId()) {
 	  
 	    case R.id.itemid_0:
-	      gpa_view.setText("4.0");
+	     // gpa_view.setText("4.0");
 	      break;
 	    case R.id.itemid_1:   	
 	    	Intent intent = new Intent(this, TaskActivity.class);
 	    	startActivity(intent);
 		      break;
 	    case R.id.itemid_2:
-		      Toast.makeText(this, "Item1 selected", Toast.LENGTH_SHORT)
-		          .show();
+		     
 		      break;
 	   
 	  
@@ -80,8 +123,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	    Toast.makeText(this, "resumed", Toast.LENGTH_SHORT)
-        .show();
+	  
 	   
 	}
 	

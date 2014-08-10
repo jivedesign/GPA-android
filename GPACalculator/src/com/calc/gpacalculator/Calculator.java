@@ -4,11 +4,27 @@ public class Calculator {
 
 	private float gpa;
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param grade
+	 */
 	
 	public Calculator(float grade){
 		this.gpa = grade;
 		
 	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @return
+	 */
 	
 	public float calculate_total(){
 		return 0;

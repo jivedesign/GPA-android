@@ -35,7 +35,10 @@ public class TaskActivity extends Activity {
 	}
 
 	private void setup_adapter(){
-		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, new ArrayList<Task>());
+		
+		ArrayList<Task> tasks = new ArrayList<Task> ();
+		
+		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, tasks);
 		ListView activity_taskview = task_list;
 		activity_taskview.setAdapter(adapter);
 	}
@@ -45,7 +48,7 @@ public class TaskActivity extends Activity {
 			
 			public void onClick(View v) {
 				
-				adapter.insert(new Task("", 0, 0), 0);
+				adapter.insert(new Task("", 0, 0, "", "", (int) Math.random()), 0);
 				
 			}
 			
@@ -61,8 +64,7 @@ public class TaskActivity extends Activity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	    Toast.makeText(this, "resumed", Toast.LENGTH_SHORT)
-        .show();
+	   
 	   
 	}
 }

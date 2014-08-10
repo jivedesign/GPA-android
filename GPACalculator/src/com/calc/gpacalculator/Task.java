@@ -19,14 +19,15 @@ public class Task {
 	}
 
 
-	public Task(String name_of_task, int class_average, int class_total, String sem, String classname, int id){
-		
+	public Task(int id, String name_of_task, int class_average, int class_total, String classname, String sem){
+		this.ID = id;
 		this.task_name = name_of_task;
 		this.task_average = class_average; 
 		this.total_marks = class_total;
-		this.semester = sem;
 		this.class_name = classname;
-		this.ID = id;
+		this.semester = sem;
+		
+		
 	}
 
 

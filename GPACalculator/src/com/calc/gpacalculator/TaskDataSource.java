@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class TaskDataSource {
 
@@ -77,7 +78,7 @@ public class TaskDataSource {
 		    return list_of_tasks;
 		  }
 	  private Task cursorToTask(Cursor cursor) {
-		    Task task = new Task( "", 0, 0, "", "", 0);
+		    Task task = new Task(0, "", 0, 0, "", "");
 		    task.setID(cursor.getInt(0));
 		    task.setName(cursor.getString(1));
 		    task.setAverage(cursor.getFloat(2));
@@ -86,4 +87,16 @@ public class TaskDataSource {
 		    task.setSemester(cursor.getString(5));
 		    return task;
 		  }
+	  
+	  public int getNewID(){
+		  
+		  int newID;
+		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_TASKS;
+		  Cursor cursor = database.rawQuery(countQuery, null);
+		  newID = cursor.getCount() + 1;
+		  Log.d("newID", Integer.toString(newID));
+		  
+		  return newID;
+	  }
+	  
 }

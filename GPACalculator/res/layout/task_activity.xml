@@ -16,13 +16,13 @@
 
     </ListView>
 
-    <Button
+ <!--     <Button
         android:id="@+id/add_taskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Add Task" />
+        android:text="Add Task" /> -->
 
 </RelativeLayout>

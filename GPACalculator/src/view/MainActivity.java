@@ -54,8 +54,8 @@ public class MainActivity extends ActionBarActivity {
 		
 		
 		tds.createTask(0, "exam1", 10, 10, "Cmput101", "Fall2013");
-		tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
-		tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
+		//tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
+		//tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
 		
 		values = tds.getAllTasks();
 		//this.deleteDatabase("tasks.db");
@@ -67,19 +67,25 @@ public class MainActivity extends ActionBarActivity {
 //	        android.R.layout.simple_list_item_1, values);
 //	    setListAdapter(adapter);
 		
-		List<String> ls = new ArrayList();
-		ls.add(values.get(0).getName());
+		List<Integer> ls = new ArrayList();
+		int i = values.size();
+		for (int j = 0; j<i;j++){
+		
+		ls.add(values.get(j).getID());
+		}
 		
 		testView = (ListView) findViewById(R.id.abcdef);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ls);
+		ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, ls);
 		
 		adapter.toString();
+		
 		
 		testView.setAdapter(adapter);
 		
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -123,7 +129,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	  
+	 
 	   
 	}
 	

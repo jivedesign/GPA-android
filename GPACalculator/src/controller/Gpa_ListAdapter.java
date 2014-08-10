@@ -3,6 +3,8 @@ package controller;
 
 import java.util.List;
 
+import javax.xml.datatype.Duration;
+
 
 
 
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Gpa_ListAdapter extends ArrayAdapter<Task>{
@@ -61,9 +64,9 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 		holder.name = (TextView)row.findViewById(R.id.task_nameedit);
 		setNameTextChangeListener(holder);
 		holder.mark_value = (TextView)row.findViewById(R.id.your_markedit);
-		setValueTextListeners(holder);
+		//setValueTextListeners(holder);
 		holder.total_value = (TextView)row.findViewById(R.id.total_edit);
-		setTotalTextListeners(holder);
+		//setTotalTextListeners(holder);
 
 		row.setTag(holder);
 
@@ -85,7 +88,12 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
 			@Override
-			public void afterTextChanged(Editable s) { }
+			public void afterTextChanged(Editable s) { 
+				
+				Toast.makeText(context, "CHANGED", Toast.LENGTH_SHORT).show();
+				return;
+				
+			}
 		});
 	}
 

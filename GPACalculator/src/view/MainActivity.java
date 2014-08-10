@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
 	//private TextView gpa_view;
 
 	private ListView testView;
-	
+	public TaskDataSource tds;
 	public List<Task> values;
 	
 	@Override
@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		//gpa_view = (TextView) findViewById(R.id.main_gpa);
 		this.deleteDatabase("tasks.db");
-		TaskDataSource tds = new TaskDataSource(this);
+		tds = new TaskDataSource(this);
 		tds.open();
 		
 		
@@ -125,6 +125,10 @@ public class MainActivity extends ActionBarActivity {
 	    super.onResume();  // Always call the superclass method first
 	  
 	   
+	}
+	
+	public List<Task> getValues(){
+		return values;
 	}
 	
 }

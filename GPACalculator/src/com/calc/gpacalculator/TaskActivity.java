@@ -1,6 +1,9 @@
 package com.calc.gpacalculator;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import view.MainActivity;
 import controller.Gpa_ListAdapter;
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import controller.*;
 
-public class TaskActivity extends Activity {
+public class TaskActivity extends MainActivity {
 
 	private Button add_task;
 	private ListView task_list;
@@ -36,7 +39,8 @@ public class TaskActivity extends Activity {
 
 	private void setup_adapter(){
 		
-		ArrayList<Task> tasks = new ArrayList<Task> ();
+		List<Task> tasks = tds.getAllTasks();
+		
 		
 		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, tasks);
 		ListView activity_taskview = task_list;

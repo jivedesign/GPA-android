@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,23 +54,7 @@ public class MainActivity extends ActionBarActivity {
 		//tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
 		//tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
 		
-		values = tds.getAllTasks();
-
-		List<Integer> ls = new ArrayList();
-		int i = values.size();
-		for (int j = 0; j<i;j++){
-		
-		ls.add(values.get(j).getID());
-		}
-		
-		testView = (ListView) findViewById(R.id.abcdef);
-		
-		ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1, ls);
-		
-		adapter.toString();
-		
-		
-		testView.setAdapter(adapter);
+		setup_adapter();
 		
 	}
 
@@ -110,12 +95,38 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	 
+	    setup_adapter();
 	   
 	}
 	
 	public List<Task> getValues(){
 		return values;
+	}
+	
+	private void setup_adapter(){
+		
+		TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
+		
+		tds1.open();
+		List<Task> tasks1 = tds1.getAllTasks();
+		
+		List<String> ls1 = new ArrayList();
+		int i = tasks1.size();
+		for (int j = 0; j<i;j++){
+			ls1.add(tasks1.get(j).getName());
+			//ls1.add(tasks1.get(j).getID());
+			Log.d("database", tasks1.get(j).getName());
+			Log.d("database", "ID " + String.valueOf(ls1.get(j)));
+		}
+		testView = (ListView) findViewById(R.id.abcdef);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ls1);
+		
+		adapter.toString();
+		
+		
+		testView.setAdapter(adapter);
+		tds1.close();
 	}
 	
 }

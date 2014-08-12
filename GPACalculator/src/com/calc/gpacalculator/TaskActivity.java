@@ -49,9 +49,7 @@ public class TaskActivity extends ActionBarActivity {
 	}
 
 	private void setup_add() {
-		
 
-		
 		LayoutInflater li = LayoutInflater.from(context);
 		
 		// Get XML file to view

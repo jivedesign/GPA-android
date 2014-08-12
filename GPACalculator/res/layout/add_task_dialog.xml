@@ -30,18 +30,6 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/average_dialog"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/taskname_dialog"
-        android:layout_marginTop="75dp"
-        android:ems="10"
-        android:gravity="left"
-        android:hint="Average"
-        android:inputType="numberDecimal" />
-
     <TextView
         android:id="@+id/viewdiagonal_dialog"
         android:layout_width="wrap_content"
@@ -63,24 +51,16 @@
         android:hint="Total"
         android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/cancelbutton_dialog"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/average_dialog"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/viewdiagonal_dialog"
-        android:text="Cancel" />
+        android:layout_below="@+id/taskname_dialog"
+        android:layout_marginTop="33dp"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="Average"
+        android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/donebutton_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/viewdiagonal_dialog"
-        android:text="Done" />
-
-</RelativeLayout>
-
-
+</RelativeLayout> 

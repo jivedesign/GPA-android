@@ -34,8 +34,6 @@ import android.widget.ArrayAdapter;
 
 public class MainActivity extends ActionBarActivity {
 
-
-	
 	//private TextView gpa_view;
 
 	private ListView testView;
@@ -50,23 +48,13 @@ public class MainActivity extends ActionBarActivity {
 		this.deleteDatabase("tasks.db");
 		tds = new TaskDataSource(this);
 		tds.open();
-		
-		
-		
+	
 		tds.createTask(0, "exam1", 10, 10, "Cmput101", "Fall2013");
 		//tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
 		//tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
 		
 		values = tds.getAllTasks();
-		//this.deleteDatabase("tasks.db");
-	
-		
-		// use the SimpleCursorAdapter to show the
-	    // elements in a ListView
-//	    ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this,
-//	        android.R.layout.simple_list_item_1, values);
-//	    setListAdapter(adapter);
-		
+
 		List<Integer> ls = new ArrayList();
 		int i = values.size();
 		for (int j = 0; j<i;j++){
@@ -100,14 +88,8 @@ public class MainActivity extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-//		int id = item.getItemId();
-//		if (id == R.id.action_settings) {
-//			return true;
-//		}
-//		return super.onOptionsItemSelected(item);
-//	}
-		switch (item.getItemId()) {
-	  
+
+		switch (item.getItemId()) {	  
 	    case R.id.itemid_0:
 	     // gpa_view.setText("4.0");
 	      break;
@@ -117,8 +99,7 @@ public class MainActivity extends ActionBarActivity {
 		      break;
 	    case R.id.itemid_2:
 		     
-		      break;
-	   
+		      break;	   
 	  
 	    default:
 	      break;

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,10 +49,17 @@ public class TaskActivity extends ActionBarActivity {
 	}
 
 	private void setup_add() {
+		
+
+		
 		LayoutInflater li = LayoutInflater.from(context);
 		
 		// Get XML file to view
 		View promptsView = li.inflate(R.layout.add_task_dialog, null);
+		
+		final EditText taskname_edit = (EditText) promptsView.findViewById(R.id.taskname_dialog);
+		final EditText average_edit = (EditText) promptsView.findViewById(R.id.average_dialog);
+		final EditText total_edit = (EditText) promptsView.findViewById(R.id.total_dialog);
 		
 		//Create a new AlertDialog
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -65,16 +73,42 @@ public class TaskActivity extends ActionBarActivity {
 		.setPositiveButton("Save",
 		  new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog,int id) {
-			
+		    
 		    	//Add new task to the DB
-		    	
-		    	
+		    	TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
+		    	tds1.open();
+		    	int newID = tds1.getNewID();
+		    	//tds1.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
+		 	
+		  
+		    	// If a field is left empty show error message close dialog, otherwise add to DB
+		    	if(!taskname_edit.getText().toString().isEmpty() & !average_edit.getText().toString().isEmpty() & !total_edit.getText().toString().isEmpty()){
+		    		
+		    		String new_taskName = taskname_edit.getText().toString();
+			    	Float float_avg_edit = Float.parseFloat(average_edit.getText().toString());
+			    	Float float_total_edit = Float.parseFloat(total_edit.getText().toString());
+		    		
+		    		// We need a way of passing a course and semester variable in to this.
+		    		// Possibly a global variable created through the screens the User will go through?
+		    		
+		    		// tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, COURSE, SEMESTER);
+		    		
+		    		//For now use this:
+		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, "Cmput102", "Fall2013");
+		    	}else{
+		    		showInValidInputMessage();
+		    		tds1.createTask(newID, "Incomplete", 0, 100, "Cmput102", "Fall2013");
+		    	}
+		    	tds1.close();	
+		    	//Call to update the list view
+		    	setup_adapter();
 		    }
 		  })
 		.setNegativeButton("Cancel",
 		  new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog,int id) {
-			dialog.cancel();
+		    	// Do nothing
+		    	dialog.cancel();
 		    }
 		  });
 		
@@ -133,7 +167,16 @@ public class TaskActivity extends ActionBarActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	   
+	  
 	   
 	}
+	
+	public void showInValidInputMessage() {
+		Context context = getApplicationContext();
+		CharSequence text = "Invalid Input";
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
+		}
+	
 }

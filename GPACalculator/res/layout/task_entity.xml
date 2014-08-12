@@ -4,16 +4,16 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
 
-    <EditText
+    <TextView
         android:id="@+id/task_nameedit"
         android:layout_width="0sp"
         android:layout_height="fill_parent"
         android:layout_weight="2"
         android:gravity="center_vertical"
         android:hint="Task"
-        android:inputType="textNoSuggestions" />
+        />
 
-    <EditText
+    <TextView
         android:id="@+id/your_markedit"
         android:layout_width="0sp"
         android:layout_height="fill_parent"
@@ -31,7 +31,7 @@
         android:text="/"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-     <EditText
+     <TextView
          android:id="@+id/total_edit"
          android:layout_width="0sp"
          android:layout_height="fill_parent"

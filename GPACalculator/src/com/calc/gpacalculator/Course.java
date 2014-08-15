@@ -6,6 +6,7 @@ public class Course {
 
 	private String name;
 	private float mark_value;
+	private static int ID;
 	
 	
 	public Course(String name, float mark_value){

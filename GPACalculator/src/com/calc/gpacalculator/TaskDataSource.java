@@ -19,9 +19,8 @@ public class TaskDataSource {
 			  MySQLiteHelper.COLUMN_ID,
 			  MySQLiteHelper.COLUMN_NAME, 
 			  MySQLiteHelper.COLUMN_AVG, 
-			  MySQLiteHelper.COLUMN_TOTAL, 
-			  MySQLiteHelper.COLUMN_COURSE,
-			  MySQLiteHelper.COLUMN_SEM, };
+			  MySQLiteHelper.COLUMN_TOTAL,
+			  MySQLiteHelper.COLUMN_COURSE2TASK_ID};
 	  
 	  public TaskDataSource(Context context) {
 		    dbHelper = new MySQLiteHelper(context);
@@ -35,14 +34,13 @@ public class TaskDataSource {
 	    dbHelper.close();
 	  }
 		  
-	  public Task createTask(int ID, String taskname, float average, float total, String course, String sem) {
+	  public Task createTask(int ID, String taskname, float average, float total, int course2taskID) {
 		    ContentValues values = new ContentValues();
 		    values.put(MySQLiteHelper.COLUMN_ID, ID);
 		    values.put(MySQLiteHelper.COLUMN_NAME, taskname);
 		    values.put(MySQLiteHelper.COLUMN_AVG, average);
 		    values.put(MySQLiteHelper.COLUMN_TOTAL, total);
-		    values.put(MySQLiteHelper.COLUMN_COURSE, course);
-		    values.put(MySQLiteHelper.COLUMN_SEM, sem);
+		    values.put(MySQLiteHelper.COLUMN_COURSE2TASK_ID, course2taskID);
 		    
 		    long insertId = database.insert(MySQLiteHelper.TABLE_TASKS, null,
 		        values);

@@ -11,33 +11,59 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	public static final String TABLE_TASKS = "tasks";
 	   public static final String COLUMN_ID = "_id";
-	   public static final String COLUMN_NAME = "coursename";
+	   public static final String COLUMN_NAME = "taskname";
 	   public static final String COLUMN_AVG = "average";
 	   public static final String COLUMN_TOTAL = "total";
-	   public static final String COLUMN_COURSE = "course";
-	   public static final String COLUMN_SEM = "sem";
+	   public static final String COLUMN_COURSE2TASK_ID = "course2taskID";
+	   
+	   public static final String TABLE_COURSES = "courses";   
+	   public static final String COLUMN_COURSE_NAME = "coursename";
+	   public static final String COLUMN_COURSE_ID = "courseID";
+	   public static final String COLUMN_SEM2COURSE_ID = "sem2courseID";
+	   
+	   public static final String TABLE_SEMESTERS = "semesters";   
+	   public static final String COLUMN_SEM_NAME = "semestername";
+	   public static final String COLUMN_SEM_ID = "courseID";
+	   
 
 	   private static final String DATABASE_NAME = "tasks.db";
+	   
 	   private static final int DATABASE_VERSION = 1;
 
 	  // Database creation sql statement
-	  private static final String DATABASE_CREATE = "create table "
-		       + TABLE_TASKS + "(" + COLUMN_ID
-		       + " integer primary key autoincrement, " + COLUMN_NAME
-		       + " TEXT," + COLUMN_AVG + " FLOAT," + COLUMN_TOTAL + " FLOAT," + COLUMN_COURSE + " TEXT," + COLUMN_SEM + " TEXT" + ")";
+	  private static final String DATABASE_CREATE_TASKS = 
+			  "create table " + TABLE_TASKS + "(" 
+			  + COLUMN_ID + " integer primary key autoincrement, " 
+			  + COLUMN_NAME + " TEXT," 
+			  + COLUMN_AVG + " FLOAT," 
+			  + COLUMN_TOTAL + " FLOAT," 
+			  + COLUMN_COURSE2TASK_ID + " INTEGER"
+			  + ")";
 
+	  private static final String DATABASE_CREATE_COURSES =
+			  "create table" + TABLE_COURSES + "("
+			  + COLUMN_COURSE_ID + " integer primary key autoincrement, "
+			  + COLUMN_COURSE_NAME + " TEXT,"
+			  + COLUMN_SEM2COURSE_ID + " INTEGER"
+			  + ")";
+	  
+	  private static final String DATABASE_CREATE_SEMESTERS =
+			  "create table" + TABLE_SEMESTERS + "("
+			  + COLUMN_SEM_ID + " integer primary key autoincrement, "
+			  + COLUMN_SEM_NAME + " TEXT,"
+			  + ")";
 	  
 	  
-	  
-	  
-	  
+	 
 	  public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	  }
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(DATABASE_CREATE);
+		database.execSQL(DATABASE_CREATE_TASKS);
+		database.execSQL(DATABASE_CREATE_COURSES);
+		database.execSQL(DATABASE_CREATE_SEMESTERS);
 	}
 
 	@Override

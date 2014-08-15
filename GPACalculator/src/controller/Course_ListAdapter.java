@@ -23,7 +23,7 @@ public class Course_ListAdapter extends ArrayAdapter<Course> {
 	
 	public Course_ListAdapter(Context context, int resource, List<Course> items) {
 		super(context, resource, items);
-		this.layoutResourceId = layoutResourceId;
+		this.layoutResourceId = resource;
 		this.context = context;
 		this.list = items;
 	}

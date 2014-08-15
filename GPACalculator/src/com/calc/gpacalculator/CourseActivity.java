@@ -1,5 +1,6 @@
 package com.calc.gpacalculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.Course_ListAdapter;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +25,7 @@ public class CourseActivity extends ActionBarActivity {
 
 	private String course_name;
 	private Course_ListAdapter adapter;
+	private ListView course_listview;
 	final Context context = this;
 	
 	/** Called when the activity is first created. */
@@ -63,7 +66,7 @@ public class CourseActivity extends ActionBarActivity {
 		    	}
 	
 		    	//Call to update the list view
-		    	//setup_adapter();
+		    	setup_adapter();
 		    }
 		  })
 		.setNegativeButton("Cancel",
@@ -111,12 +114,29 @@ private void setup_adapter(){
 		
 		TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
 		
+		Course course_obj;
+		String course_obj_name;
+		float course_obj_mark;
+		
 		tds1.open();
-		List<Task> tasks = tds1.getAllTasks();
+		List<Task> tasks_fromDB = tds1.getAllTasks();
+		
+		List<Course> course_list = new ArrayList();
+		int i = tasks_fromDB.size();
+		for (int j = 0; j<i; j++){
+			
+			course_obj_name = tasks_fromDB.get(j).getClass_name();
+			course_obj_mark = 0; //Change later when calculated
+			
+			course_obj = new Course(course_obj_name, course_obj_mark);
+			course_list.add(course_obj);
+			//ls1.add(tasks1.get(j).getID());
+			Log.d("database", tasks_fromDB.get(j).getName());
+		}
 		
 		
-		adapter = new Course_ListAdapter(this, R.layout.course_entity, _________);
-		ListView activity_taskview = task_list;
+		adapter = new Course_ListAdapter(this, R.layout.course_entity, course_list);
+		ListView activity_taskview = course_listview;
 		activity_taskview.setAdapter(adapter);
 		tds1.close();
 	}

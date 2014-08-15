@@ -4,6 +4,7 @@ public class Semester {
 
 	private String name;
 	private float mark_value;
+	private static int ID;
 	
 	public Semester(String name, float mark_value) {
 		this.name = name;

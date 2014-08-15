@@ -92,10 +92,10 @@ public class TaskActivity extends ActionBarActivity {
 		    		// tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, COURSE, SEMESTER);
 		    		
 		    		//For now use this:
-		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, "Cmput102", "Fall2013");
+		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, 0);
 		    	}else{
 		    		showInValidInputMessage();
-		    		tds1.createTask(newID, "Incomplete", 0, 100, "Cmput102", "Fall2013");
+		    		tds1.createTask(newID, "Incomplete", 0, 100, 0);
 		    	}
 		    	tds1.close();	
 		    	//Call to update the list view

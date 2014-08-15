@@ -1,37 +1,32 @@
 package com.calc.gpacalculator;
 
-import java.util.ArrayList;
-
-public class Course {
+public class Semester {
 
 	private String name;
 	private float mark_value;
 	
-	
-	public Course(String name, float mark_value){
+	public Semester(String name, float mark_value) {
 		this.name = name;
 		this.mark_value = mark_value;
 		
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	public float getMark() {
+	public float getMark_value() {
 		return mark_value;
 	}
 
-
-	public void setMark(float mark_value) {
+	public void setMark_value(float mark_value) {
 		this.mark_value = mark_value;
 	}
-
+	
+	
+	
 }

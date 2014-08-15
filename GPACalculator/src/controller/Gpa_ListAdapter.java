@@ -49,7 +49,6 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 		TextView name;
 		TextView mark_value;
 		TextView total_value;
-		
 	}
 	
 	@Override

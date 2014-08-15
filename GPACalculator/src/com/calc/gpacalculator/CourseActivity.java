@@ -1,5 +1,9 @@
 package com.calc.gpacalculator;
 
+import java.util.List;
+
+import controller.Course_ListAdapter;
+import controller.Gpa_ListAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,11 +16,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class CourseActivity extends ActionBarActivity {
 
 	private String course_name;
+	private Course_ListAdapter adapter;
 	final Context context = this;
 	
 	/** Called when the activity is first created. */
@@ -99,6 +105,22 @@ public class CourseActivity extends ActionBarActivity {
 	    }
 		return true;
 	}
+	
+	
+private void setup_adapter(){
+		
+		TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
+		
+		tds1.open();
+		List<Task> tasks = tds1.getAllTasks();
+		
+		
+		adapter = new Course_ListAdapter(this, R.layout.course_entity, _________);
+		ListView activity_taskview = task_list;
+		activity_taskview.setAdapter(adapter);
+		tds1.close();
+	}
+
 	
 	public void showInValidInputMessage() {
 		Context context = getApplicationContext();

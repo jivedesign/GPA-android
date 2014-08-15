@@ -49,11 +49,11 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//gpa_view = (TextView) findViewById(R.id.main_gpa);
-		this.deleteDatabase("tasks.db");
+	//	this.deleteDatabase("tasks.db");
 		tds = new TaskDataSource(this);
 		tds.open();
 	
-		tds.createTask(0, "exam1", 10, 10, "Cmput101", "Fall2013");
+		//tds.createTask(0, "exam1", 10, 10, "Cmput101", "Fall2013");
 		//tds.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
 		//tds.createTask(2, "exam3", 2, 10, "Cmput103", "Fall2013");
 		
@@ -83,6 +83,7 @@ public class MainActivity extends ActionBarActivity {
 	      break;
 	    case R.id.itemid_1:   	
 	    	Intent intent = new Intent(this, TaskActivity.class);
+	    	
 	    	startActivity(intent);
 		      break;
 	    case R.id.itemid_2:

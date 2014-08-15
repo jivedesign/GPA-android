@@ -3,10 +3,12 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.calc.gpacalculator.CourseActivity;
 import com.calc.gpacalculator.R;
 import com.calc.gpacalculator.R.id;
 import com.calc.gpacalculator.R.layout;
 import com.calc.gpacalculator.R.menu;
+import com.calc.gpacalculator.SemesterActivity;
 import com.calc.gpacalculator.Task;
 import com.calc.gpacalculator.TaskActivity;
 import com.calc.gpacalculator.TaskDataSource;
@@ -79,15 +81,19 @@ public class MainActivity extends ActionBarActivity {
 
 		switch (item.getItemId()) {	  
 	    case R.id.itemid_0:
-	     // gpa_view.setText("4.0");
-	      break;
-	    case R.id.itemid_1:   	
 	    	Intent intent = new Intent(this, TaskActivity.class);
 	    	
 	    	startActivity(intent);
+		    break;
+	    case R.id.itemid_1:   	
+	    	Intent semester_intent = new Intent(this, SemesterActivity.class);
+	    	
+	    	startActivity(semester_intent);
 		      break;
 	    case R.id.itemid_2:
-		     
+	    	Intent course_intent = new Intent(this, CourseActivity.class);
+	    	
+	    	startActivity(course_intent);
 		      break;	   
 	  
 	    default:

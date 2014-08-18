@@ -41,16 +41,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + ")";
 
 	  private static final String DATABASE_CREATE_COURSES =
-			  "create table" + TABLE_COURSES + "("
+			  "create table " + TABLE_COURSES + "("
 			  + COLUMN_COURSE_ID + " integer primary key autoincrement, "
 			  + COLUMN_COURSE_NAME + " TEXT,"
 			  + COLUMN_SEM2COURSE_ID + " INTEGER"
 			  + ")";
 	  
 	  private static final String DATABASE_CREATE_SEMESTERS =
-			  "create table" + TABLE_SEMESTERS + "("
+			  "create table " + TABLE_SEMESTERS + "("
 			  + COLUMN_SEM_ID + " integer primary key autoincrement, "
-			  + COLUMN_SEM_NAME + " TEXT,"
+			  + COLUMN_SEM_NAME + " TEXT"
 			  + ")";
 	  
 	  

@@ -47,6 +47,7 @@ public class TaskDataSource {
 		    Cursor cursor = database.query(MySQLiteHelper.TABLE_TASKS,
 		        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
 		        null, null, null);
+		    Log.d("database", Integer.toString(cursor.getColumnCount()));
 		    cursor.moveToFirst();
 		    Task newComment = cursorToTask(cursor);
 		    cursor.close();
@@ -76,13 +77,13 @@ public class TaskDataSource {
 		    return list_of_tasks;
 		  }
 	  private Task cursorToTask(Cursor cursor) {
-		    Task task = new Task(0, "", 0, 0, "", "");
+		    Task task = new Task(0, "", 0, 0, 0);
 		    task.setID(cursor.getInt(0));
 		    task.setName(cursor.getString(1));
 		    task.setAverage(cursor.getFloat(2));
 		    task.setTotal_marks(cursor.getFloat(3));
-		    task.setClass_name(cursor.getString(4));
-		    task.setSemester(cursor.getString(5));
+		    
+		    task.setSemester_ID(cursor.getInt(4));
 		    return task;
 		  }
 	  
@@ -91,7 +92,14 @@ public class TaskDataSource {
 		  int newID;
 		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_TASKS;
 		  Cursor cursor = database.rawQuery(countQuery, null);
-		  newID = cursor.getCount() + 1;
+		  newID = cursor.getCount();
+		  Log.d("# rows TASKS", Integer.toString(newID));
+		  if(newID == 0){
+			  return newID;
+		  }else{
+			 newID = newID + 1; 
+		  }
+		  
 		  Log.d("newID", Integer.toString(newID));
 		  
 		  return newID;

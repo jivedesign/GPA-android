@@ -5,7 +5,7 @@ public class Task {
 	private String task_name;
 	private float task_average;
 	private float total_marks;
-	private String semester;
+	private int semester_ID;
 	private String class_name;
 	private static int ID;
 	
@@ -19,13 +19,13 @@ public class Task {
 	}
 
 
-	public Task(int id, String name_of_task, int class_average, int class_total, String classname, String sem){
+	public Task(int id, String name_of_task, int class_average, int class_total, int sem){
 		this.ID = id;
 		this.task_name = name_of_task;
 		this.task_average = class_average; 
 		this.total_marks = class_total;
-		this.class_name = classname;
-		this.semester = sem;
+		
+		this.semester_ID = sem;
 		
 		
 	}
@@ -41,13 +41,13 @@ public class Task {
 	}
 
 
-	public String getSemester() {
-		return semester;
+	public int getSemester_ID() {
+		return semester_ID;
 	}
 
 
-	public void setSemester(String semester) {
-		this.semester = semester;
+	public void setSemester_ID(int semester) {
+		this.semester_ID = semester;
 	}
 
 

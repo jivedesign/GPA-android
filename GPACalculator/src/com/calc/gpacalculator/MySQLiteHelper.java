@@ -72,6 +72,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		        "Upgrading database from version " + oldVersion + " to "
 		            + newVersion + ", which will destroy all old data");
 		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
+		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES);
+		    db.execSQL("DROP TABLE IF EXISTS " + TABLE_SEMESTERS);
 		    onCreate(db);	
 	}
 

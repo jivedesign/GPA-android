@@ -66,7 +66,7 @@ public class CourseActivity extends ActionBarActivity {
 		    	}
 	
 		    	//Call to update the list view
-		    	setup_adapter();
+		    //	setup_adapter();
 		    }
 		  })
 		.setNegativeButton("Cancel",
@@ -128,8 +128,8 @@ private void setup_adapter(){
 			course_obj_name = tasks_fromDB.get(j).getClass_name();
 			course_obj_mark = 0; //Change later when calculated
 			
-			course_obj = new Course(course_obj_name, course_obj_mark);
-			course_list.add(course_obj);
+		//	course_obj = new Course(course_obj_name, course_obj_mark);
+		//	course_list.add(course_obj);
 			//ls1.add(tasks1.get(j).getID());
 			Log.d("database", tasks_fromDB.get(j).getName());
 		}

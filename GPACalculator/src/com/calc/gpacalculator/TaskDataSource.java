@@ -95,13 +95,14 @@ public class TaskDataSource {
 		  newID = cursor.getCount();
 		  Log.d("# rows TASKS", Integer.toString(newID));
 		  if(newID == 0){
+			  cursor.close();
 			  return newID;
 		  }else{
 			 newID = newID + 1; 
 		  }
 		  
 		  Log.d("newID", Integer.toString(newID));
-		  
+		  cursor.close();
 		  return newID;
 	  }
 	  

@@ -31,7 +31,7 @@ public class SemesterDataSource {
 		dbHelper.close();
 	}
 
-	public Semester createSemester(String sName, float sID) {
+	public Semester createSemester(String sName, int sID) {
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteHelper.COLUMN_SEM_NAME, sName);
 		values.put(MySQLiteHelper.COLUMN_SEM_ID, sID);

@@ -31,10 +31,10 @@ public class CourseDataSource {
 		dbHelper.close();
 	}
 
-	public Course createCourse(int ID, String cName, float marks, int s2c_ID) {
+	public Course createCourse(int ID, String cName, int s2c_ID) {
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteHelper.COLUMN_COURSE_NAME, cName);
-		values.put(MySQLiteHelper.COLUMN_COURSE_ID, marks);
+		values.put(MySQLiteHelper.COLUMN_COURSE_ID, ID);
 		values.put(MySQLiteHelper.COLUMN_SEM2COURSE_ID, s2c_ID);
 
 		long insertId = database.insert(MySQLiteHelper.TABLE_COURSES, null,
@@ -86,20 +86,31 @@ public class CourseDataSource {
 		  int newID;
 		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_COURSES;
 		  Cursor cursor = database.rawQuery(countQuery, null);
-		  newID = cursor.getCount() + 1;
-		  Log.d("newID", Integer.toString(newID));
+		  newID = cursor.getCount();
+		  if(newID == 0){
+			  cursor.close();
+			  return newID;
+		  }else{
+			 newID = newID + 1; 
+		  }
 		  
+		  Log.d("database", "newID (course) = " +Integer.toString(newID));
+		  cursor.close();
 		  return newID;
+
 	  }
 	  
 	  public List<Course> getCoursesfromSem (int semID){
 		  
 		  List<Course> course_list = new ArrayList<Course>();
 		  
-		  String query = "SELECT c.cNAME, c.cID, c.sID FROM " + MySQLiteHelper.TABLE_SEMESTERS + " s, " + MySQLiteHelper.TABLE_COURSES +
+		  String query = "SELECT c.coursename, c.courseID, c.sem2courseID FROM " + MySQLiteHelper.TABLE_SEMESTERS + " s, " + MySQLiteHelper.TABLE_COURSES +
 				  		" c" + " WHERE " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + " c." + MySQLiteHelper.COLUMN_SEM2COURSE_ID +
 				  		" AND " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + semID;
 		   
+		  Log.d("database", "QUERY = " + query);
+		  
+		  
 		  Cursor cursor = database.rawQuery(query, null);
 		  
 		  cursor.moveToFirst();

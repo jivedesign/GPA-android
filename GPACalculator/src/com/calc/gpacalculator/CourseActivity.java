@@ -24,6 +24,9 @@ import android.widget.Toast;
 public class CourseActivity extends ActionBarActivity {
 
 	private String course_name;
+	private float course_mark;
+	private int cID;
+	private int c2s_ID;
 	private Course_ListAdapter adapter;
 	private ListView course_listview;
 	final Context context = this;
@@ -33,6 +36,15 @@ public class CourseActivity extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.course_activity); 
+	    course_listview = (ListView) findViewById(R.id.view_courseActivity);
+	    
+	    SemesterDataSource sds = new SemesterDataSource(context);
+		sds.open();
+		sds.createSemester("Sem1", 0);
+		sds.close();
+	    
+	    
+	    setup_adapter();
 	}
 	
 	private void setup_add() {
@@ -57,16 +69,23 @@ public class CourseActivity extends ActionBarActivity {
 		  new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog,int id) {
 		    
+		    	CourseDataSource cds = new CourseDataSource(context);
+		    	cds.open();
+		    	
 		    	// If a field is left empty show error message close dialog, otherwise add to DB
 		    	if(!coursename_edit.getText().toString().isEmpty()){
 		    		course_name = coursename_edit.getText().toString();
-		  
+		    		cID = cds.getNewID();
+		    		c2s_ID = 0; // TODO pass in semester ID
+		    		
+		    		cds.createCourse(cID, course_name, c2s_ID);
 		    	}else{
 		    		showInValidInputMessage();
 		    	}
 	
 		    	//Call to update the list view
-		    //	setup_adapter();
+		    	setup_adapter();
+		    	cds.close();
 		    }
 		  })
 		.setNegativeButton("Cancel",
@@ -112,33 +131,31 @@ public class CourseActivity extends ActionBarActivity {
 	
 private void setup_adapter(){
 		
-		TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
+		CourseDataSource cds = new CourseDataSource(context);
+		course_mark = 10; // CHANGE
+	
 		
-		Course course_obj;
-		String course_obj_name;
-		float course_obj_mark;
 		
-		tds1.open();
-		List<Task> tasks_fromDB = tds1.getAllTasks();
+		cds.open();
+		List<Course> courses1_fromDB = cds.getAllCourses(); //Change to get courses from a semester?
+		List<Course> courses_fromDB = cds.getCoursesfromSem(0); //Change to get courses from a semester?
+		Log.d("database", "size of sem " + Integer.toString(courses_fromDB.size()) );
+		Log.d("database", "size of all " + Integer.toString(courses1_fromDB.size()) );
+
 		
-		List<Course> course_list = new ArrayList();
-		int i = tasks_fromDB.size();
+		int i = courses_fromDB.size();
 		for (int j = 0; j<i; j++){
 			
-			course_obj_name = tasks_fromDB.get(j).getClass_name();
-			course_obj_mark = 0; //Change later when calculated
-			
-		//	course_obj = new Course(course_obj_name, course_obj_mark);
-		//	course_list.add(course_obj);
-			//ls1.add(tasks1.get(j).getID());
-			Log.d("database", tasks_fromDB.get(j).getName());
+			courses_fromDB.get(j).setMark(course_mark);
+
+		
 		}
 		
-		
-		adapter = new Course_ListAdapter(this, R.layout.course_entity, course_list);
+	
+		adapter = new Course_ListAdapter(this, R.layout.course_entity, courses_fromDB);
 		ListView activity_taskview = course_listview;
 		activity_taskview.setAdapter(adapter);
-		tds1.close();
+		cds.close();
 	}
 
 	

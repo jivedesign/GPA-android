@@ -19,7 +19,13 @@ public class SemesterActivity extends ActionBarActivity {
 	private String semester_name;
 	final Context context = this;
 	
-	
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.semester_activity);
+	    
+	}
 	
 	private void setup_add() {
 
@@ -105,13 +111,7 @@ public class SemesterActivity extends ActionBarActivity {
 	
 	
 	
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.semester_activity);
-	    
-	}
+	
 
 
 }

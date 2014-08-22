@@ -4,12 +4,11 @@ public class Semester {
 
 	private String name;
 	private float mark_value;
-	private static int ID;
+	private static int sID;
 	
-	public Semester(String name, float mark_value, int sID) {
+	public Semester(String name, int sID) {
 		this.name = name;
-		this.mark_value = mark_value;
-		this.ID = sID;
+		this.sID = sID;
 		
 	}
 
@@ -18,11 +17,11 @@ public class Semester {
 	}
 
 	public static int getID() {
-		return ID;
+		return sID;
 	}
 
 	public static void setID(int iD) {
-		ID = iD;
+		sID = iD;
 	}
 
 	public void setName(String name) {

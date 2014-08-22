@@ -31,7 +31,7 @@ public class SemesterDataSource {
 		dbHelper.close();
 	}
 
-	public Course createCourse(String sName, float sID) {
+	public Semester createSemester(String sName, float sID) {
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteHelper.COLUMN_SEM_NAME, sName);
 		values.put(MySQLiteHelper.COLUMN_SEM_ID, sID);
@@ -42,48 +42,47 @@ public class SemesterDataSource {
 				MySQLiteHelper.COLUMN_SEM_ID + " = " + insertId, null, null, null,
 				null);
 		cursor.moveToFirst();
-		Course newComment = cursorToCourse(cursor);
+		Semester newComment = cursorToSemester(cursor);
 		cursor.close();
 		return newComment;
 	}
 	
-	 private Course cursorToCourse(Cursor cursor) {
-		    Course course = new Course("", 0, 0,0);
-		    course.setName(cursor.getString(0));
-		    course.setID(cursor.getInt(1));
-		    course.setSem2course(2);
+	 private Semester cursorToSemester(Cursor cursor) {
+		    Semester semester = new Semester("", 0);
+		    semester.setName(cursor.getString(0));
+		    semester.setID(cursor.getInt(1));
 		    
-		    return course;
+		    return semester;
 		  }
 
-	  public void deleteCourse(Course course) {
-		    long id = course.getID();
-		    System.out.println("Course deleted with id: " + id);
-		    database.delete(MySQLiteHelper.TABLE_COURSES, MySQLiteHelper.COLUMN_COURSE_ID
+	  public void deleteSemester(Semester semester) {
+		    long id = semester.getID();
+		    System.out.println("Semester deleted with id: " + id);
+		    database.delete(MySQLiteHelper.TABLE_SEMESTERS, MySQLiteHelper.COLUMN_SEM_ID
 		        + " = " + id, null);
 		  }
 	 
-	  public List<Course> getAllCourses() {
-		    List<Course> list_of_courses = new ArrayList<Course>();
+	  public List<Semester> getAllSemesters() {
+		    List<Semester> list_of_semesters = new ArrayList<Semester>();
 
-		    Cursor cursor = database.query(MySQLiteHelper.TABLE_COURSES,
+		    Cursor cursor = database.query(MySQLiteHelper.TABLE_SEMESTERS,
 		        allColumns, null, null, null, null, null);
 
 		    cursor.moveToFirst();
 		    while (!cursor.isAfterLast()) {
-		      Course c = cursorToCourse(cursor);
-		      list_of_courses.add(c);
+		      Semester c = cursorToSemester(cursor);
+		      list_of_semesters.add(c);
 		      cursor.moveToNext();
 		    }
 		    // make sure to close the cursor
 		    cursor.close();
-		    return list_of_courses;
+		    return list_of_semesters;
 		  }
 	  
 	  public int getNewID(){
 		  
 		  int newID;
-		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_COURSES;
+		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_SEMESTERS;
 		  Cursor cursor = database.rawQuery(countQuery, null);
 		  newID = cursor.getCount() + 1;
 		  Log.d("newID", Integer.toString(newID));
@@ -91,25 +90,5 @@ public class SemesterDataSource {
 		  return newID;
 	  }
 	  
-	  public List<Course> getCoursesfromSem (int semID){
-		  
-		  List<Course> course_list = new ArrayList<Course>();
-		  
-		  String query = "SELECT c.cNAME, c.cID, c.sID FROM " + MySQLiteHelper.TABLE_SEMESTERS + " s, " + MySQLiteHelper.TABLE_COURSES +
-				  		" c" + " WHERE " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + " c." + MySQLiteHelper.COLUMN_SEM2COURSE_ID +
-				  		" AND " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + semID;
-		   
-		  Cursor cursor = database.rawQuery(query, null);
-		  
-		  cursor.moveToFirst();
-		  while(!cursor.isAfterLast()){
-			  Course c = cursorToCourse(cursor);
-			  course_list.add(c);
-			  cursor.moveToNext();
-		  }
-		  cursor.close();
-		  return course_list;
-		  
-	  }
-	  
+	
 }

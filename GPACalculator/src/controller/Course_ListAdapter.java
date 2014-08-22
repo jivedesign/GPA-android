@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+
+
 import com.calc.gpacalculator.R;
 import com.calc.gpacalculator.Task;
 
@@ -11,7 +13,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -52,10 +56,17 @@ public class Course_ListAdapter extends ArrayAdapter<Course> {
 	
 	}
 	
+	
+	
 	private void setupItem(CourseListHolder holder) {
 		holder.name.setText(holder.course.getName());
 		holder.mark_value.setText(String.valueOf(holder.course.getMark()));
 	}
+
+	
+
+
+
 
 }
 

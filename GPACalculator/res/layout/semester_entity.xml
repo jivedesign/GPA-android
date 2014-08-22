@@ -13,6 +13,8 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center"
+        android:focusable="false"
+        android:clickable="false"
         android:hint="Task" />
 
     <TextView
@@ -23,6 +25,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:hint="3.5"
+        android:focusable="false"
+        android:clickable="false"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:inputType="numberDecimal" />
     

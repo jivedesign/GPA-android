@@ -12,6 +12,8 @@
         android:layout_alignParentLeft="true"
         android:layout_weight="1"
         android:gravity="center"
+        android:focusable="false"
+        android:clickable="false"
         android:hint="Task" />
     <TextView
         android:id="@+id/course_markedit"
@@ -21,6 +23,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:hint="3.5"
+        android:focusable="false"
+        android:clickable="false"
         android:inputType="numberDecimal" />
     
 </RelativeLayout>

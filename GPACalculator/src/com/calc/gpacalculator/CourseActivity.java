@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -17,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,6 +40,9 @@ public class CourseActivity extends ActionBarActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.course_activity); 
 	    course_listview = (ListView) findViewById(R.id.view_courseActivity);
+		
+	    
+	    
 	    
 	    SemesterDataSource sds = new SemesterDataSource(context);
 		sds.open();
@@ -46,6 +52,9 @@ public class CourseActivity extends ActionBarActivity {
 	    
 	    setup_adapter();
 	}
+	
+	
+	
 	
 	private void setup_add() {
 
@@ -153,8 +162,50 @@ private void setup_adapter(){
 		
 	
 		adapter = new Course_ListAdapter(this, R.layout.course_entity, courses_fromDB);
-		ListView activity_taskview = course_listview;
+		
+		final ListView activity_taskview = course_listview;
+		
 		activity_taskview.setAdapter(adapter);
+		
+		
+		
+		
+		activity_taskview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				Log.d("onclick", "HERE");
+				
+			}
+
+            
+
+        });
+		
+
+		
+		
+//		adapter.setOnItemClickListener(new OnItemClickListener() {
+//			   @Override
+//			   public void onItemClick(AdapterView<?> listView, View view,
+//			     int position, long id) {
+//			   // Get the cursor, positioned to the corresponding row in the result set
+//			   Cursor cursor = (Cursor) listView.getItemAtPosition(position);
+//			 
+//			   // Get the state's capital from this row in the database.
+//			   String countryCode =
+//			    cursor.getString(cursor.getColumnIndexOrThrow("code"));
+//			   Toast.makeText(getApplicationContext(),
+//			     countryCode, Toast.LENGTH_SHORT).show();
+//			 
+//			   }
+//			  });
+		
+		
+		
+		
 		cds.close();
 	}
 

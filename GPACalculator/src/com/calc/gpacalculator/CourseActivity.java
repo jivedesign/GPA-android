@@ -177,6 +177,9 @@ private void setup_adapter(){
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Log.d("onclick", "HERE");
+				Course c = (Course) activity_taskview.getItemAtPosition(position);
+				Log.d("onclick", "Name from list: " + c.getName());
+
 				
 			}
 

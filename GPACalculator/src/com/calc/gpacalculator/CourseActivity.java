@@ -42,14 +42,13 @@ public class CourseActivity extends ActionBarActivity {
 	    setContentView(R.layout.course_activity); 
 	    course_listview = (ListView) findViewById(R.id.view_courseActivity);
 		
+	    Bundle extras = getIntent().getExtras();
+	    if (extras != null) {
+	        c2s_ID = extras.getInt("sID");
+	        Log.d("onclick", Integer.toString(c2s_ID));
+	    }
 	    
-	    
-	    
-	    SemesterDataSource sds = new SemesterDataSource(context);
-		sds.open();
-		sds.createSemester("Sem1", 0);
-		sds.close();
-	    
+	    	    
 	    
 	    setup_adapter();
 	}
@@ -86,7 +85,6 @@ public class CourseActivity extends ActionBarActivity {
 		    	if(!coursename_edit.getText().toString().isEmpty()){
 		    		course_name = coursename_edit.getText().toString();
 		    		cID = cds.getNewID();
-		    		c2s_ID = 0; // TODO pass in semester ID
 		    		
 		    		cds.createCourse(cID, course_name, c2s_ID);
 		    	}else{

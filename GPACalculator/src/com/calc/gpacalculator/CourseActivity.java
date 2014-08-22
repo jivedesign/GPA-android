@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -176,9 +177,13 @@ private void setup_adapter(){
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Log.d("onclick", "HERE");
+				//Log.d("onclick", "HERE");
 				Course c = (Course) activity_taskview.getItemAtPosition(position);
 				Log.d("onclick", "Name from list: " + c.getName());
+				
+				Intent i = new Intent(getApplicationContext(), TaskActivity.class);
+				i.putExtra("cID",c.getID());
+				startActivity(i);
 
 				
 			}

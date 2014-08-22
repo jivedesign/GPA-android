@@ -36,12 +36,22 @@ public class TaskActivity extends ActionBarActivity {
 	private Gpa_ListAdapter adapter;
 	final Context context = this;
 	
+	private int c2t_ID;
+	
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.task_activity);
+	    
+	    Bundle extras = getIntent().getExtras();
+	    if (extras != null) {
+	        c2t_ID = extras.getInt("cID");
+	        Log.d("onclick", Integer.toString(c2t_ID));
+	    }
+	    
+	    
 	    
 		task_list = (ListView) findViewById(R.id.view_tasklist);
 		setup_adapter();
@@ -92,7 +102,7 @@ public class TaskActivity extends ActionBarActivity {
 		    		// tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, COURSE, SEMESTER);
 		    		
 		    		//For now use this:
-		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, 0);
+		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, c2t_ID);
 		    	}else{
 		    		showInValidInputMessage();
 		    		tds1.createTask(newID, "Incomplete", 0, 100, 0);

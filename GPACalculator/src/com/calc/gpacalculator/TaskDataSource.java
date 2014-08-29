@@ -122,10 +122,8 @@ public class TaskDataSource {
 		  float average = cursor.getFloat(0);
 		  float total = cursor.getFloat(1);
 		  float weight = cursor.getFloat(2);
-		  
-		  TaskGrade = calc.taskGrade(average,total,weight);
-		  
-		  return TaskGrade;
+		  		  
+		  return (average/total)*(weight/100);
 	  }
 	  
 }

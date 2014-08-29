@@ -141,7 +141,8 @@ public class CourseDataSource {
 		  }
 		  
 		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
-				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade;
+				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
+				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
 				  		  
 		  cursor = database.rawQuery(updateCourseGrade, null);
 		  

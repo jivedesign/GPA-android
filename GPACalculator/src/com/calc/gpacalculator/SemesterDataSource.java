@@ -104,6 +104,13 @@ public class SemesterDataSource {
 			  semester_grade += cursor.getFloat(0);
 			  cursor.moveToNext();
 		  }
+		  
+		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_SEMESTERS
+				  + " SET " + MySQLiteHelper.COLUMN_SEM_GRADE + " = " + semester_grade
+				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM2COURSE_ID;
+				  		  
+		  cursor = database.rawQuery(updateCourseGrade, null);
+		  
 		  cursor.close();
 		  
 		  return semester_grade;

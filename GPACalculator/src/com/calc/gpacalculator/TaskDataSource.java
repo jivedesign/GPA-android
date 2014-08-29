@@ -106,4 +106,24 @@ public class TaskDataSource {
 		  return newID;
 	  }
 	  
+	  public Float getTaskGrade (int taskID) {
+		  float TaskGrade = 0;
+		  
+		  String countQuery = 
+				  "SELECT " + MySQLiteHelper.COLUMN_AVG + ", " + MySQLiteHelper.COLUMN_TOTAL + " , " + MySQLiteHelper.COLUMN_WEIGHT
+				  + " FROM " + MySQLiteHelper.TABLE_TASKS
+				  + " WHERE " + MySQLiteHelper.COLUMN_ID + " = " + taskID; 
+		  
+		  Cursor cursor = database.rawQuery(countQuery, null);
+		  
+		  cursor.moveToFirst();
+		  float average = cursor.getFloat(0);
+		  float total = cursor.getFloat(1);
+		  float weight = cursor.getFloat(2);
+		  
+		  TaskGrade = Calculator.taskGrade(average,total,weight);
+		  
+		  return TaskGrade;
+	  }
+	  
 }

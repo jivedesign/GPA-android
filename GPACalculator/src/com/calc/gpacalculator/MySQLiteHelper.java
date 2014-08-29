@@ -15,6 +15,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	   public static final String COLUMN_AVG = "average";
 	   public static final String COLUMN_TOTAL = "total";
 	   public static final String COLUMN_COURSE2TASK_ID = "course2taskID";
+	   public static final String COLUMN_WEIGHT = "weight";
 	   
 	   public static final String TABLE_COURSES = "courses";   
 	   public static final String COLUMN_COURSE_NAME = "coursename";

@@ -26,6 +26,11 @@ public class Calculator {
 		
 	}
 	
+	public static Float taskGrade (float average, float total, float weight) {
+		return (average/total)*weight;
+	}
+	
+	
 	/**
 	 * 
 	 * 

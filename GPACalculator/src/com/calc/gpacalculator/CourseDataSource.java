@@ -121,7 +121,28 @@ public class CourseDataSource {
 		  }
 		  cursor.close();
 		  return course_list;
-		  
 	  }
 	  
+	  
+	  public Float getCourseGradefromTasks (int courseID) {
+		  float course_grade = 0;
+		  		  
+		  String query = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
+				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
+		  
+		  Cursor cursor = database.rawQuery(query, null);
+		  
+		  cursor.moveToFirst();
+		  while(!cursor.isAfterLast()){
+			  int taskID = cursor.getInt(0); 
+					  
+			  float weighted_course_grade = taskDataSource.getTaskGrade(taskID);
+			  course_grade += weighted_course_grade;
+			  cursor.moveToNext();
+		  }
+		  cursor.close();
+		  
+	  }  
+	  
+	 
 }

@@ -134,8 +134,6 @@ private void setup_adapter(){
 		
 		//Calculator calc = new Calculator();
 		
-		
-		
 		course_mark = 10; // CHANGE
 
 		cds.open();

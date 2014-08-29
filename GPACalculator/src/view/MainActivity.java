@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//gpa_view = (TextView) findViewById(R.id.main_gpa);
-		this.deleteDatabase("tasks.db");
+		//this.deleteDatabase("tasks.db");
 		tds = new TaskDataSource(this);
 
 		

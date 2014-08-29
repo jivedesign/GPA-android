@@ -99,7 +99,7 @@ public class CourseActivity extends ActionBarActivity {
 		    		course_name = coursename_edit.getText().toString();
 		    		cID = cds.getNewID();
 		    		
-		    		cds.createCourse(cID, course_name, s2c_ID,-1);
+		    		cds.createCourse(cID, course_name, s2c_ID,0);
 		    	}else{
 		    		showInValidInputMessage();
 		    	}

@@ -95,6 +95,35 @@ public class SemesterDataSource {
 	  }
 	  
 	  
+	  /**
+	   * 
+	   * TODO: fix bug with not saving a course grade properly --> cannot calculate sem grade correctly --> sql update statment?
+	   * TODO: make weights as percentages
+	   * TODO: GPA goals @ course and semester levels 
+	   * TODO: home screen display GPA
+	   * TODO: table headers for tasks
+	   * TODO: design
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * @param semId
+	   * @param cds
+	   * @return
+	   */
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  public Float getGPAfromCourses(int semId, CourseDataSource cds) {
 		  float semester_grade = 0;
   		  

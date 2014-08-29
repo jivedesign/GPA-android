@@ -23,6 +23,23 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+
+//TODO Fix bug when adding, for each sem,c,t pass in a list of floats representing grades to calculator method
+// 		in calculator return grade 
+/**
+ * 
+ * for loop each grade in list
+ * sql: select c.grade from semester s, course c where s.cid = c.cid
+ * see public List<Course> getCoursesfromSem (int semID){ from COURSEDATASOURCE
+ * 
+ * sem1 > c1
+ * 
+ * @author Jasmine
+ *
+ */
+
+
+
 public class SemesterActivity extends ActionBarActivity {
 
 	private String semester_name;
@@ -65,13 +82,13 @@ public class SemesterActivity extends ActionBarActivity {
 		    
 		    	// If a field is left empty show error message close dialog, otherwise add to DB
 		    	if(!coursename_edit.getText().toString().isEmpty()){
-		    	semester_name = coursename_edit.getText().toString();
-		    	sds.open();
-		    	int sID = sds.getNewID();
+		    		semester_name = coursename_edit.getText().toString();
+		    		sds.open();
+		    		int sID = sds.getNewID();
 		    	
-		    	sds.createSemester(semester_name, sID);
+		    		sds.createSemester(semester_name, sID);
 		    	
-		    	sds.close();
+		    		sds.close();
 		  
 		    	}else{
 		    		showInValidInputMessage();
@@ -147,7 +164,7 @@ private void setup_adapter(){
 		
 		
 		
-		
+		sds.close();
 		activity_taskview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -160,6 +177,7 @@ private void setup_adapter(){
 				
 				Intent i = new Intent(getApplicationContext(), CourseActivity.class);
 				i.putExtra("sID",s.getID());
+				
 				startActivity(i);
 
 				

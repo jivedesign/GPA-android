@@ -30,7 +30,7 @@ public class CourseActivity extends ActionBarActivity {
 	private String course_name;
 	private float course_mark;
 	private int cID;
-	private int c2s_ID;
+	private int s2c_ID;
 	private Course_ListAdapter adapter;
 	private ListView course_listview;
 	final Context context = this;
@@ -44,18 +44,13 @@ public class CourseActivity extends ActionBarActivity {
 		
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null) {
-	        c2s_ID = extras.getInt("sID");
-	        Log.d("onclick", Integer.toString(c2s_ID));
-	    }
-	    
-	    	    
+	        s2c_ID = extras.getInt("sID");
+	        Log.d("onclick", Integer.toString(s2c_ID));
+	    }    	    
 	    
 	    setup_adapter();
 	}
-	
-	
-	
-	
+
 	private void setup_add() {
 
 		LayoutInflater li = LayoutInflater.from(context);
@@ -86,7 +81,7 @@ public class CourseActivity extends ActionBarActivity {
 		    		course_name = coursename_edit.getText().toString();
 		    		cID = cds.getNewID();
 		    		
-		    		cds.createCourse(cID, course_name, c2s_ID);
+		    		cds.createCourse(cID, course_name, s2c_ID);
 		    	}else{
 		    		showInValidInputMessage();
 		    	}
@@ -109,10 +104,6 @@ public class CourseActivity extends ActionBarActivity {
 		alertDialog.show();
 	}
 
-	
-	
-	
-	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater menuInflater = getMenuInflater();
@@ -140,15 +131,18 @@ public class CourseActivity extends ActionBarActivity {
 private void setup_adapter(){
 		
 		CourseDataSource cds = new CourseDataSource(context);
+		
+		//Calculator calc = new Calculator();
+		
+		
+		
 		course_mark = 10; // CHANGE
-	
-		
-		
+
 		cds.open();
-		List<Course> courses1_fromDB = cds.getAllCourses(); //Change to get courses from a semester?
-		List<Course> courses_fromDB = cds.getCoursesfromSem(0); //Change to get courses from a semester?
+	//	List<Course> courses1_fromDB = cds.getAllCourses(); //Change to get courses from a semester?
+		List<Course> courses_fromDB = cds.getCoursesfromSem(s2c_ID); //Change to get courses from a semester? CHANGE
 		Log.d("database", "size of sem " + Integer.toString(courses_fromDB.size()) );
-		Log.d("database", "size of all " + Integer.toString(courses1_fromDB.size()) );
+	//	Log.d("database", "size of all " + Integer.toString(courses1_fromDB.size()) );
 
 		
 		int i = courses_fromDB.size();
@@ -156,66 +150,36 @@ private void setup_adapter(){
 			
 			courses_fromDB.get(j).setMark(course_mark);
 
-		
 		}
-		
-	
+
 		adapter = new Course_ListAdapter(this, R.layout.course_entity, courses_fromDB);
 		
-		final ListView activity_taskview = course_listview;
+		final ListView activity_courseview = course_listview;
 		
-		activity_taskview.setAdapter(adapter);
+		activity_courseview.setAdapter(adapter);
 		
-		
-		
-		
-		activity_taskview.setOnItemClickListener(new OnItemClickListener() {
+
+		activity_courseview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
 				//Log.d("onclick", "HERE");
-				Course c = (Course) activity_taskview.getItemAtPosition(position);
+				Course c = (Course) activity_courseview.getItemAtPosition(position);
 				Log.d("onclick", "Name from list: " + c.getName());
 				
 				Intent i = new Intent(getApplicationContext(), TaskActivity.class);
 				i.putExtra("cID",c.getID());
 				startActivity(i);
-
 				
 			}
 
-            
-
         });
-		
-
-		
-		
-//		adapter.setOnItemClickListener(new OnItemClickListener() {
-//			   @Override
-//			   public void onItemClick(AdapterView<?> listView, View view,
-//			     int position, long id) {
-//			   // Get the cursor, positioned to the corresponding row in the result set
-//			   Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-//			 
-//			   // Get the state's capital from this row in the database.
-//			   String countryCode =
-//			    cursor.getString(cursor.getColumnIndexOrThrow("code"));
-//			   Toast.makeText(getApplicationContext(),
-//			     countryCode, Toast.LENGTH_SHORT).show();
-//			 
-//			   }
-//			  });
-		
-		
-		
 		
 		cds.close();
 	}
 
-	
 	public void showInValidInputMessage() {
 		Context context = getApplicationContext();
 		CharSequence text = "Invalid Input";

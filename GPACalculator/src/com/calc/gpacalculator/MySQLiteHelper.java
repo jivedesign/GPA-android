@@ -20,10 +20,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	   public static final String COLUMN_COURSE_NAME = "coursename";
 	   public static final String COLUMN_COURSE_ID = "courseID";
 	   public static final String COLUMN_SEM2COURSE_ID = "sem2courseID";
+	   public static final String COLUMN_COURSE_GRADE = "coursegrade";
+	   
+	   
 	   
 	   public static final String TABLE_SEMESTERS = "semesters";   
 	   public static final String COLUMN_SEM_NAME = "semestername";
 	   public static final String COLUMN_SEM_ID = "courseID";
+	   public static final String COLUMN_SEM_GRADE = "semestergrade";
 	   
 
 	   private static final String DATABASE_NAME = "tasks.db";
@@ -44,13 +48,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  "create table " + TABLE_COURSES + "("
 			  + COLUMN_COURSE_ID + " integer primary key autoincrement, "
 			  + COLUMN_COURSE_NAME + " TEXT,"
-			  + COLUMN_SEM2COURSE_ID + " INTEGER"
+			  + COLUMN_SEM2COURSE_ID + " INTEGER,"
+			  + COLUMN_COURSE_GRADE + " FLOAT"
 			  + ")";
 	  
 	  private static final String DATABASE_CREATE_SEMESTERS =
 			  "create table " + TABLE_SEMESTERS + "("
 			  + COLUMN_SEM_ID + " integer primary key autoincrement, "
-			  + COLUMN_SEM_NAME + " TEXT"
+			  + COLUMN_SEM_NAME + " TEXT,"
+			  + COLUMN_SEM_GRADE + " FLOAT"
 			  + ")";
 	  
 	  

@@ -50,9 +50,7 @@ public class TaskActivity extends ActionBarActivity {
 	        c2t_ID = extras.getInt("cID");
 	        Log.d("onclick", Integer.toString(c2t_ID));
 	    }
-	    
-	    
-	    
+
 		task_list = (ListView) findViewById(R.id.view_tasklist);
 		setup_adapter();
 		

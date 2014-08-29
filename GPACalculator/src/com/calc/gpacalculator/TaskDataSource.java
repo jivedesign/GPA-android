@@ -21,7 +21,8 @@ public class TaskDataSource {
 			  MySQLiteHelper.COLUMN_AVG, 
 			  MySQLiteHelper.COLUMN_TOTAL,
 			  MySQLiteHelper.COLUMN_COURSE2TASK_ID,
-			  MySQLiteHelper.COLUMN_WEIGHT};
+			  MySQLiteHelper.COLUMN_WEIGHT,
+			  MySQLiteHelper.COLUMN_GRADE};
 	  
 	  public TaskDataSource(Context context) {
 		    dbHelper = new MySQLiteHelper(context);
@@ -35,7 +36,7 @@ public class TaskDataSource {
 	    dbHelper.close();
 	  }
 		  
-	  public Task createTask(int ID, String taskname, float average, float total, int course2taskID, float weight) {
+	  public Task createTask(int ID, String taskname, float average, float total, int course2taskID, float weight, float grade) {
 		    ContentValues values = new ContentValues();
 		    values.put(MySQLiteHelper.COLUMN_ID, ID);
 		    values.put(MySQLiteHelper.COLUMN_NAME, taskname);
@@ -43,6 +44,7 @@ public class TaskDataSource {
 		    values.put(MySQLiteHelper.COLUMN_TOTAL, total);
 		    values.put(MySQLiteHelper.COLUMN_COURSE2TASK_ID, course2taskID);
 		    values.put(MySQLiteHelper.COLUMN_WEIGHT, weight);
+		    values.put(MySQLiteHelper.COLUMN_GRADE, grade);
 		    
 		    long insertId = database.insert(MySQLiteHelper.TABLE_TASKS, null,
 		        values);
@@ -79,13 +81,14 @@ public class TaskDataSource {
 		    return list_of_tasks;
 		  }
 	  private Task cursorToTask(Cursor cursor) {
-		    Task task = new Task(0, "", 0, 0, 0,0);
+		    Task task = new Task(0, "", 0, 0, 0,0,0);
 		    task.setID(cursor.getInt(0));
 		    task.setName(cursor.getString(1));
 		    task.setAverage(cursor.getFloat(2));
 		    task.setTotal_marks(cursor.getFloat(3));
 		    task.setSemester_ID(cursor.getInt(4));
 		    task.setWeight(cursor.getFloat(5));
+		    task.setGrade(cursor.getFloat(6));
 		    return task;
 		  }
 	  
@@ -122,8 +125,10 @@ public class TaskDataSource {
 		  float average = cursor.getFloat(0);
 		  float total = cursor.getFloat(1);
 		  float weight = cursor.getFloat(2);
-		  		  
-		  return (average/total)*(weight/100);
+		  
+		  TaskGrade = calc.taskGrade(average,total,weight);
+		  
+		  return TaskGrade;
 	  }
 	  
 }

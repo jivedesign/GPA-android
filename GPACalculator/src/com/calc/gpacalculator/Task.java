@@ -9,6 +9,7 @@ public class Task {
 	private String class_name;
 	private static int ID;
 	private float weight;
+	private float grade;
 	
 	public String getClass_name() {
 		return class_name;
@@ -20,14 +21,24 @@ public class Task {
 	}
 
 
-	public Task(int id, String name_of_task, int class_average, int class_total, int sem, float task_weight){
+	public Task(int id, String name_of_task, int class_average, int class_total, int sem, float task_weight, float task_grade){
 		this.ID = id;
 		this.task_name = name_of_task;
 		this.task_average = class_average; 
 		this.total_marks = class_total;
 		this.semester_ID = sem;
 		this.weight = task_weight;
-		
+		this.grade = task_grade;
+	}
+
+
+	public float getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(float grade) {
+		this.grade = grade;
 	}
 
 

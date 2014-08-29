@@ -49,6 +49,7 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 		TextView name;
 		TextView mark_value;
 		TextView total_value;
+		TextView weight_value;
 	}
 	
 	@Override
@@ -63,6 +64,7 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 		holder.name = (TextView)row.findViewById(R.id.task_nameedit);
 		holder.mark_value = (TextView)row.findViewById(R.id.your_markedit);
 		holder.total_value = (TextView)row.findViewById(R.id.total_edit);
+		holder.weight_value = (TextView)row.findViewById(R.id.task_weightedit);
 		row.setTag(holder);
 		setupItem(holder);
 		return row;
@@ -75,6 +77,7 @@ public class Gpa_ListAdapter extends ArrayAdapter<Task>{
 		holder.name.setText(holder.task.getName());
 		holder.mark_value.setText(String.valueOf(holder.task.getAverage()));
 		holder.total_value.setText(String.valueOf(holder.task.getTotal_marks()));
+		holder.weight_value.setText(String.valueOf(holder.task.getWeight()));
 	}
 	
 

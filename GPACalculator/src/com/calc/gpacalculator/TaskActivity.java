@@ -96,10 +96,10 @@ public class TaskActivity extends ActionBarActivity {
 			    	Float float_avg_edit = Float.parseFloat(average_edit.getText().toString());
 			    	Float float_total_edit = Float.parseFloat(total_edit.getText().toString());
 			    	Float float_weight = Float.parseFloat(task_weight.getText().toString());
-			    	float_weight = float_weight/100;
+			    	
 
 		    		Log.d("weight", Float.toString(float_weight));
-		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, c2t_ID, float_weight);
+		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, c2t_ID, float_weight,-1);
 
 		    	}else{
 		    		showInValidInputMessage();	

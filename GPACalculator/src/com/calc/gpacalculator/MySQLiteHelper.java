@@ -16,6 +16,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	   public static final String COLUMN_TOTAL = "total";
 	   public static final String COLUMN_COURSE2TASK_ID = "course2taskID";
 	   public static final String COLUMN_WEIGHT = "weight";
+	   public static final String COLUMN_GRADE = "grade";
 	   
 	   public static final String TABLE_COURSES = "courses";   
 	   public static final String COLUMN_COURSE_NAME = "coursename";
@@ -43,7 +44,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + COLUMN_AVG + " FLOAT," 
 			  + COLUMN_TOTAL + " FLOAT," 
 			  + COLUMN_COURSE2TASK_ID + " INTEGER, "
-			  + COLUMN_WEIGHT + " FLOAT"
+			  + COLUMN_WEIGHT + " FLOAT, "
+			  + COLUMN_GRADE + " FLOAT"
 			  + ")";
 
 	  private static final String DATABASE_CREATE_COURSES =

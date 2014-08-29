@@ -90,5 +90,23 @@ public class SemesterDataSource {
 		  return newID;
 	  }
 	  
+	  
+	  public Float getGPAfromCourses(int semId, CourseDataSource cds) {
+		  float semester_grade = 0;
+  		  
+		  String query = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES
+				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM2COURSE_ID;
+		  
+		  Cursor cursor = database.rawQuery(query, null);
+		  
+		  cursor.moveToFirst();
+		  while(!cursor.isAfterLast()){
+			  semester_grade += cursor.getFloat(0);
+			  cursor.moveToNext();
+		  }
+		  cursor.close();
+		  
+		  return semester_grade;
+	  }
 	
 }

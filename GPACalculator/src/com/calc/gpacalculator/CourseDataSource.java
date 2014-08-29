@@ -139,7 +139,14 @@ public class CourseDataSource {
 			  course_grade += weighted_course_grade;
 			  cursor.moveToNext();
 		  }
+		  
+		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
+				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade;
+				  		  
+		  cursor = database.rawQuery(updateCourseGrade, null);
+		  
 		  cursor.close();
+		  
 		  
 		  return course_grade;
 	  }  

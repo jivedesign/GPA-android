@@ -35,6 +35,9 @@ public class CourseActivity extends ActionBarActivity {
 	private ListView course_listview;
 	final Context context = this;
 	
+	private int myCid;
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +48,25 @@ public class CourseActivity extends ActionBarActivity {
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null) {
 	        s2c_ID = extras.getInt("sID");
-	        Log.d("onclick", Integer.toString(s2c_ID));
+	        Log.d("onclick", "oncreate from sem id should match SEM" + Integer.toString(s2c_ID));
 	    }    	    
 	    
 	    setup_adapter();
+	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  // Always call the superclass method first
+	    Bundle extras = getIntent().getExtras();
+	    if (extras != null) {
+	        s2c_ID = extras.getInt("sID");
+	        Log.d("onclick", "on resume from sem ID " + Integer.toString(s2c_ID));
+	    }    	
+	    
+	    setup_adapter();
+	    
+	    
+	   
 	}
 
 	private void setup_add() {
@@ -81,7 +99,7 @@ public class CourseActivity extends ActionBarActivity {
 		    		course_name = coursename_edit.getText().toString();
 		    		cID = cds.getNewID();
 		    		
-		    		cds.createCourse(cID, course_name, s2c_ID);
+		    		cds.createCourse(cID, course_name, s2c_ID,-1);
 		    	}else{
 		    		showInValidInputMessage();
 		    	}
@@ -131,11 +149,14 @@ public class CourseActivity extends ActionBarActivity {
 private void setup_adapter(){
 		
 		CourseDataSource cds = new CourseDataSource(context);
+		TaskDataSource tds = new TaskDataSource(context);
+		
+		
 		
 		//Calculator calc = new Calculator();
 		
-		course_mark = 10; // CHANGE
-
+		
+		tds.open();
 		cds.open();
 	//	List<Course> courses1_fromDB = cds.getAllCourses(); //Change to get courses from a semester?
 		List<Course> courses_fromDB = cds.getCoursesfromSem(s2c_ID); //Change to get courses from a semester? CHANGE
@@ -145,7 +166,8 @@ private void setup_adapter(){
 		
 		int i = courses_fromDB.size();
 		for (int j = 0; j<i; j++){
-			
+
+			course_mark = cds.getCourseGradefromTasks(courses_fromDB.get(j).getID(), tds);
 			courses_fromDB.get(j).setMark(course_mark);
 
 		}
@@ -176,6 +198,7 @@ private void setup_adapter(){
         });
 		
 		cds.close();
+		tds.close();
 	}
 
 	public void showInValidInputMessage() {

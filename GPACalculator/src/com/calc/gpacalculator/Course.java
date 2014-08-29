@@ -6,7 +6,7 @@ public class Course {
 
 	private String name;
 	private float mark_value;
-	private static int ID;
+	private int ID;
 	private int sem2course;
 	
 	
@@ -29,12 +29,12 @@ public class Course {
 		this.sem2course = sem2course;
 	}
 
-	public static int getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public static void setID(int iD) {
-		ID = iD;
+	public  void setID(int iD) {
+		this.ID = iD;
 	}
 
 	public String getName() {

@@ -17,7 +17,8 @@ public class SemesterDataSource {
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = { 
 			MySQLiteHelper.COLUMN_SEM_NAME,
-			MySQLiteHelper.COLUMN_SEM_ID};
+			MySQLiteHelper.COLUMN_SEM_ID,
+			MySQLiteHelper.COLUMN_SEM_GRADE};
 	
 	public SemesterDataSource(Context context) {
 		dbHelper = new MySQLiteHelper(context);
@@ -31,10 +32,11 @@ public class SemesterDataSource {
 		dbHelper.close();
 	}
 
-	public Semester createSemester(String sName, int sID) {
+	public Semester createSemester(String sName, int sID, float marks) {
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteHelper.COLUMN_SEM_NAME, sName);
 		values.put(MySQLiteHelper.COLUMN_SEM_ID, sID);
+		values.put(MySQLiteHelper.COLUMN_SEM_GRADE, marks);
 
 		long insertId = database.insert(MySQLiteHelper.TABLE_SEMESTERS, null,
 				values);
@@ -48,9 +50,10 @@ public class SemesterDataSource {
 	}
 	
 	 private Semester cursorToSemester(Cursor cursor) {
-		    Semester semester = new Semester("", 0);
+		    Semester semester = new Semester("", 0,0);
 		    semester.setName(cursor.getString(0));
 		    semester.setID(cursor.getInt(1));
+		    semester.setMark_value(cursor.getFloat(2));
 		    
 		    return semester;
 		  }
@@ -85,6 +88,7 @@ public class SemesterDataSource {
 		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_SEMESTERS;
 		  Cursor cursor = database.rawQuery(countQuery, null);
 		  newID = cursor.getCount() + 1;
+
 		  Log.d("newID", Integer.toString(newID));
 		  
 		  return newID;
@@ -101,15 +105,22 @@ public class SemesterDataSource {
 		  
 		  cursor.moveToFirst();
 		  while(!cursor.isAfterLast()){
+			  
+			  Log.d("marks", "cursor value " + cursor.getFloat(0));
+			  
 			  semester_grade += cursor.getFloat(0);
+			  
+			  //semester_grade = 4;
 			  cursor.moveToNext();
 		  }
 		  
-		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_SEMESTERS
-				  + " SET " + MySQLiteHelper.COLUMN_SEM_GRADE + " = " + semester_grade
-				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM2COURSE_ID;
-				  		  
-		  cursor = database.rawQuery(updateCourseGrade, null);
+		  Log.d("marks", "semester_grade = " + Float.toString(semester_grade));
+		  
+//		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_SEMESTERS
+//				  + " SET " + MySQLiteHelper.COLUMN_SEM_GRADE + " = " + semester_grade
+//				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM_ID;
+//				  		  
+//		  cursor = database.rawQuery(updateCourseGrade, null);
 		  
 		  cursor.close();
 		  

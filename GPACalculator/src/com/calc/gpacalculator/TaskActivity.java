@@ -48,7 +48,7 @@ public class TaskActivity extends ActionBarActivity {
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null) {
 	        c2t_ID = extras.getInt("cID");
-	        Log.d("onclick", Integer.toString(c2t_ID));
+	        Log.d("onclick", "oncreate task id " + Integer.toString(c2t_ID));
 	    }
 
 		task_list = (ListView) findViewById(R.id.view_tasklist);
@@ -128,7 +128,7 @@ public class TaskActivity extends ActionBarActivity {
 		TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
 		
 		tds1.open();
-		List<Task> tasks = tds1.getAllTasks();
+		List<Task> tasks = tds1.getTasksfromCourse(c2t_ID);
 		
 		
 		adapter = new Gpa_ListAdapter(this, R.layout.task_entity, tasks);

@@ -47,6 +47,8 @@ public class SemesterActivity extends ActionBarActivity {
 	private ListView semester_listview;
 	final Context context = this;
 	
+	private Float semMark;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,17 @@ public class SemesterActivity extends ActionBarActivity {
 	    semester_listview = (ListView) findViewById(R.id.view_semesterlist);
 	    setup_adapter();
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();  // Always call the superclass method first
+	 
+	    setup_adapter();
+	    
+	    
+	   
+	}
+	
 	
 	private void setup_add() {
 
@@ -85,8 +98,9 @@ public class SemesterActivity extends ActionBarActivity {
 		    		semester_name = coursename_edit.getText().toString();
 		    		sds.open();
 		    		int sID = sds.getNewID();
+		    		Log.d("onclick", "checking new id of sem " + Integer.toString(sID));
 		    	
-		    		sds.createSemester(semester_name, sID);
+		    		sds.createSemester(semester_name, sID,0);
 		    	
 		    		sds.close();
 		  
@@ -151,10 +165,23 @@ public class SemesterActivity extends ActionBarActivity {
 private void setup_adapter(){
 		
 		SemesterDataSource sds = new SemesterDataSource(context);
+		CourseDataSource cds = new CourseDataSource(context);
 		
-		
+		cds.open();
 		sds.open();
-		List<Semester> semesters_fromDB = sds.getAllSemesters(); //Change to get courses from a semester?
+		List<Semester> semesters_fromDB = sds.getAllSemesters(); //Change to get courses from a semester?]
+		
+		int i = semesters_fromDB.size();
+		for (int j = 0; j<i; j++){
+
+			semMark = sds.getGPAfromCourses(semesters_fromDB.get(j).getID(), cds);
+			
+			Log.d("marks", "semMark = " + Float.toString(semMark));
+			
+			semesters_fromDB.get(j).setMark_value(semMark);
+
+		}
+
 			
 		adapter = new Semester_ListAdapter(this, R.layout.semester_entity, semesters_fromDB);
 		
@@ -163,7 +190,7 @@ private void setup_adapter(){
 		activity_taskview.setAdapter(adapter);
 		
 		
-		
+		cds.close();
 		sds.close();
 		activity_taskview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -171,9 +198,11 @@ private void setup_adapter(){
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				//Log.d("onclick", "HERE");
+				
+				Log.d("onclick", "Position clicked " + Integer.toString(position));
 				Semester s = (Semester) activity_taskview.getItemAtPosition(position);
-				Log.d("onclick", "Name from list: " + s.getName());
+				Log.d("onclick", "SEM Name from list: " + s.getName());
+				Log.d("onclick", "SEM ID from list: " + Integer.toString(s.getID()));
 				
 				Intent i = new Intent(getApplicationContext(), CourseActivity.class);
 				i.putExtra("sID",s.getID());

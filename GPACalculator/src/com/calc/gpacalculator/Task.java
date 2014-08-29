@@ -7,7 +7,7 @@ public class Task {
 	private float total_marks;
 	private int semester_ID;
 	private String class_name;
-	private static int ID;
+	private int ID;
 	private float weight;
 	private float grade;
 	
@@ -52,13 +52,13 @@ public class Task {
 	}
 
 
-	public static int getID() {
+	public int getID() {
 		return ID;
 	}
 
 
 	public void setID(int iD) {
-		ID = iD;
+		this.ID = iD;
 	}
 
 

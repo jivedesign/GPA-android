@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.calc.gpacalculator.CourseActivity;
+import com.calc.gpacalculator.CourseDataSource;
 import com.calc.gpacalculator.R;
 import com.calc.gpacalculator.R.id;
 import com.calc.gpacalculator.R.layout;
 import com.calc.gpacalculator.R.menu;
 import com.calc.gpacalculator.SemesterActivity;
+import com.calc.gpacalculator.SemesterDataSource;
 import com.calc.gpacalculator.Task;
 import com.calc.gpacalculator.TaskActivity;
 import com.calc.gpacalculator.TaskDataSource;
@@ -44,6 +46,7 @@ public class MainActivity extends ActionBarActivity {
 
 	private ListView testView;
 	public TaskDataSource tds;
+
 	public List<Task> values;
 	
 	@Override
@@ -53,8 +56,10 @@ public class MainActivity extends ActionBarActivity {
 		//gpa_view = (TextView) findViewById(R.id.main_gpa);
 		this.deleteDatabase("tasks.db");
 		tds = new TaskDataSource(this);
+
+		
 		tds.open();
-	
+
 		setup_adapter();
 		
 	}

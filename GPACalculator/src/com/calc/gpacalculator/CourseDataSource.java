@@ -17,7 +17,8 @@ public class CourseDataSource {
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = { MySQLiteHelper.COLUMN_COURSE_NAME,
 			MySQLiteHelper.COLUMN_COURSE_ID,
-			MySQLiteHelper.COLUMN_SEM2COURSE_ID };
+			MySQLiteHelper.COLUMN_SEM2COURSE_ID,
+			MySQLiteHelper.COLUMN_COURSE_GRADE};
 
 	public CourseDataSource(Context context) {
 		dbHelper = new MySQLiteHelper(context);
@@ -31,11 +32,12 @@ public class CourseDataSource {
 		dbHelper.close();
 	}
 
-	public Course createCourse(int ID, String cName, int s2c_ID) {
+	public Course createCourse(int ID, String cName, int s2c_ID, float marks) {
 		ContentValues values = new ContentValues();
 		values.put(MySQLiteHelper.COLUMN_COURSE_NAME, cName);
 		values.put(MySQLiteHelper.COLUMN_COURSE_ID, ID);
 		values.put(MySQLiteHelper.COLUMN_SEM2COURSE_ID, s2c_ID);
+		values.put(MySQLiteHelper.COLUMN_COURSE_GRADE, marks);
 
 		long insertId = database.insert(MySQLiteHelper.TABLE_COURSES, null,
 				values);
@@ -52,7 +54,8 @@ public class CourseDataSource {
 		    Course course = new Course("", 0, 0,0);
 		    course.setName(cursor.getString(0));
 		    course.setID(cursor.getInt(1));
-		    course.setSem2course(2);
+		    course.setSem2course(cursor.getInt(2));
+		    course.setMark(cursor.getFloat(3));
 		    
 		    return course;
 		  }
@@ -86,13 +89,7 @@ public class CourseDataSource {
 		  int newID;
 		  String countQuery = "SELECT  * FROM " + MySQLiteHelper.TABLE_COURSES;
 		  Cursor cursor = database.rawQuery(countQuery, null);
-		  newID = cursor.getCount();
-		  if(newID == 0){
-			  cursor.close();
-			  return newID;
-		  }else{
-			 newID = newID + 1; 
-		  }
+		  newID = cursor.getCount() + 1;
 		  
 		  Log.d("database", "newID (course) = " +Integer.toString(newID));
 		  cursor.close();
@@ -100,11 +97,19 @@ public class CourseDataSource {
 
 	  }
 	  
+	  /**
+	   * 
+	   * Change to account for grade column 
+	   * 
+	   * @param semID
+	   * @return
+	   */
+	  
 	  public List<Course> getCoursesfromSem (int semID){
 		  
 		  List<Course> course_list = new ArrayList<Course>();
 		  
-		  String query = "SELECT c.coursename, c.courseID, c.sem2courseID FROM " + MySQLiteHelper.TABLE_SEMESTERS + " s, " + MySQLiteHelper.TABLE_COURSES +
+		  String query = "SELECT c.coursename, c.courseID, c.sem2courseID, c.coursegrade FROM " + MySQLiteHelper.TABLE_SEMESTERS + " s, " + MySQLiteHelper.TABLE_COURSES +
 				  		" c" + " WHERE " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + " c." + MySQLiteHelper.COLUMN_SEM2COURSE_ID +
 				  		" AND " + "s." + MySQLiteHelper.COLUMN_SEM_ID + " = " + semID;
 		   
@@ -140,11 +145,23 @@ public class CourseDataSource {
 			  cursor.moveToNext();
 		  }
 		  
+		  Log.d("marks", "value of course_grade = " + Float.toString(course_grade));
+		  
 		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
 				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
-				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
-				  		  
+				  + " WHERE " + MySQLiteHelper.COLUMN_SEM2COURSE_ID + " = " + courseID;
+				  		
 		  cursor = database.rawQuery(updateCourseGrade, null);
+		  
+		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
+				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
+		  
+		  Cursor cursor1 = database.rawQuery(query1, null);
+		  
+		  
+		//  Log.d("marks", "course_grade after update = " + Float.toString(cursor1.getFloat(0)));
+		  
+		  
 		  
 		  cursor.close();
 		  

@@ -23,7 +23,7 @@ public class Semester_ListAdapter extends ArrayAdapter<Semester> {
 		
 		public Semester_ListAdapter(Context context, int resource, List<Semester> items) {
 			super(context, resource, items);
-			this.layoutResourceId = layoutResourceId;
+			this.layoutResourceId = resource;
 			this.context = context;
 			this.list = items;
 		}

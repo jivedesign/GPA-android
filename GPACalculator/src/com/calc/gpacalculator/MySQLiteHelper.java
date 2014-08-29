@@ -42,7 +42,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + COLUMN_NAME + " TEXT," 
 			  + COLUMN_AVG + " FLOAT," 
 			  + COLUMN_TOTAL + " FLOAT," 
-			  + COLUMN_COURSE2TASK_ID + " INTEGER"
+			  + COLUMN_COURSE2TASK_ID + " INTEGER, "
+			  + COLUMN_WEIGHT + " FLOAT"
 			  + ")";
 
 	  private static final String DATABASE_CREATE_COURSES =

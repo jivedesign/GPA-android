@@ -20,7 +20,8 @@ public class TaskDataSource {
 			  MySQLiteHelper.COLUMN_NAME, 
 			  MySQLiteHelper.COLUMN_AVG, 
 			  MySQLiteHelper.COLUMN_TOTAL,
-			  MySQLiteHelper.COLUMN_COURSE2TASK_ID};
+			  MySQLiteHelper.COLUMN_COURSE2TASK_ID,
+			  MySQLiteHelper.COLUMN_WEIGHT};
 	  
 	  public TaskDataSource(Context context) {
 		    dbHelper = new MySQLiteHelper(context);
@@ -34,13 +35,14 @@ public class TaskDataSource {
 	    dbHelper.close();
 	  }
 		  
-	  public Task createTask(int ID, String taskname, float average, float total, int course2taskID) {
+	  public Task createTask(int ID, String taskname, float average, float total, int course2taskID, float weight) {
 		    ContentValues values = new ContentValues();
 		    values.put(MySQLiteHelper.COLUMN_ID, ID);
 		    values.put(MySQLiteHelper.COLUMN_NAME, taskname);
 		    values.put(MySQLiteHelper.COLUMN_AVG, average);
 		    values.put(MySQLiteHelper.COLUMN_TOTAL, total);
 		    values.put(MySQLiteHelper.COLUMN_COURSE2TASK_ID, course2taskID);
+		    values.put(MySQLiteHelper.COLUMN_WEIGHT, weight);
 		    
 		    long insertId = database.insert(MySQLiteHelper.TABLE_TASKS, null,
 		        values);
@@ -77,13 +79,13 @@ public class TaskDataSource {
 		    return list_of_tasks;
 		  }
 	  private Task cursorToTask(Cursor cursor) {
-		    Task task = new Task(0, "", 0, 0, 0);
+		    Task task = new Task(0, "", 0, 0, 0,0);
 		    task.setID(cursor.getInt(0));
 		    task.setName(cursor.getString(1));
 		    task.setAverage(cursor.getFloat(2));
 		    task.setTotal_marks(cursor.getFloat(3));
-		    
 		    task.setSemester_ID(cursor.getInt(4));
+		    task.setWeight(cursor.getFloat(5));
 		    return task;
 		  }
 	  
@@ -108,7 +110,7 @@ public class TaskDataSource {
 	  
 	  public Float getTaskGrade (int taskID) {
 		  float TaskGrade = 0;
-		  
+		  Calculator calc = new Calculator();
 		  String countQuery = 
 				  "SELECT " + MySQLiteHelper.COLUMN_AVG + ", " + MySQLiteHelper.COLUMN_TOTAL + " , " + MySQLiteHelper.COLUMN_WEIGHT
 				  + " FROM " + MySQLiteHelper.TABLE_TASKS
@@ -121,7 +123,7 @@ public class TaskDataSource {
 		  float total = cursor.getFloat(1);
 		  float weight = cursor.getFloat(2);
 		  
-		  TaskGrade = Calculator.taskGrade(average,total,weight);
+		  TaskGrade = calc.taskGrade(average,total,weight);
 		  
 		  return TaskGrade;
 	  }

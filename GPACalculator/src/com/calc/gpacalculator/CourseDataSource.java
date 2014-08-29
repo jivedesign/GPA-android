@@ -124,7 +124,7 @@ public class CourseDataSource {
 	  }
 	  
 	  
-	  public Float getCourseGradefromTasks (int courseID) {
+	  public float getCourseGradefromTasks (int courseID, TaskDataSource tds) {
 		  float course_grade = 0;
 		  		  
 		  String query = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
@@ -134,14 +134,14 @@ public class CourseDataSource {
 		  
 		  cursor.moveToFirst();
 		  while(!cursor.isAfterLast()){
-			  int taskID = cursor.getInt(0); 
-					  
-			  float weighted_course_grade = taskDataSource.getTaskGrade(taskID);
+			  int taskID = cursor.getInt(0); 					  
+			  float weighted_course_grade = tds.getTaskGrade(taskID);
 			  course_grade += weighted_course_grade;
 			  cursor.moveToNext();
 		  }
 		  cursor.close();
 		  
+		  return course_grade;
 	  }  
 	  
 	 

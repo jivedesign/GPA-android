@@ -21,12 +21,12 @@ public class Calculator {
 	 * @param grade
 	 */
 	
-	public Calculator(float grade){
-		this.gpa = grade;
+	public Calculator(){
+		
 		
 	}
 	
-	public static Float taskGrade (float average, float total, float weight) {
+	public Float taskGrade (float average, float total, float weight) {
 		return (average/total)*weight;
 	}
 	

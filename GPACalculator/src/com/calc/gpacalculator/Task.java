@@ -8,6 +8,7 @@ public class Task {
 	private int semester_ID;
 	private String class_name;
 	private static int ID;
+	private float weight;
 	
 	public String getClass_name() {
 		return class_name;
@@ -19,15 +20,24 @@ public class Task {
 	}
 
 
-	public Task(int id, String name_of_task, int class_average, int class_total, int sem){
+	public Task(int id, String name_of_task, int class_average, int class_total, int sem, float task_weight){
 		this.ID = id;
 		this.task_name = name_of_task;
 		this.task_average = class_average; 
 		this.total_marks = class_total;
-		
 		this.semester_ID = sem;
+		this.weight = task_weight;
 		
-		
+	}
+
+
+	public float getWeight() {
+		return weight;
+	}
+
+
+	public void setWeight(float weight) {
+		this.weight = weight;
 	}
 
 

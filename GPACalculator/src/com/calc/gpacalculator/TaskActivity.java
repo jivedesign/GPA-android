@@ -66,6 +66,7 @@ public class TaskActivity extends ActionBarActivity {
 		final EditText taskname_edit = (EditText) promptsView.findViewById(R.id.taskname_dialog);
 		final EditText average_edit = (EditText) promptsView.findViewById(R.id.average_dialog);
 		final EditText total_edit = (EditText) promptsView.findViewById(R.id.total_dialog);
+		final EditText task_weight = (EditText) promptsView.findViewById(R.id.weight_dialog);
 		
 		//Create a new AlertDialog
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -84,26 +85,24 @@ public class TaskActivity extends ActionBarActivity {
 		    	TaskDataSource tds1 = new TaskDataSource(getApplicationContext());
 		    	tds1.open();
 		    	int newID = tds1.getNewID();
-		    	//tds1.createTask(1, "exam2", 5, 10, "Cmput102", "Fall2013");
-		 	
-		  
+		    
 		    	// If a field is left empty show error message close dialog, otherwise add to DB
-		    	if(!taskname_edit.getText().toString().isEmpty() & !average_edit.getText().toString().isEmpty() & !total_edit.getText().toString().isEmpty()){
+		    	if(!taskname_edit.getText().toString().isEmpty() & 
+		    			!average_edit.getText().toString().isEmpty() & 
+		    			!total_edit.getText().toString().isEmpty() & 
+		    			!task_weight.getText().toString().isEmpty()){
 		    		
 		    		String new_taskName = taskname_edit.getText().toString();
 			    	Float float_avg_edit = Float.parseFloat(average_edit.getText().toString());
 			    	Float float_total_edit = Float.parseFloat(total_edit.getText().toString());
-		    		
-		    		// We need a way of passing a course and semester variable in to this.
-		    		// Possibly a global variable created through the screens the User will go through?
-		    		
-		    		// tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, COURSE, SEMESTER);
-		    		
-		    		//For now use this:
-		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, c2t_ID);
+			    	Float float_weight = Float.parseFloat(task_weight.getText().toString());
+			    	float_weight = float_weight/100;
+
+		    		Log.d("weight", Float.toString(float_weight));
+		    		tds1.createTask(newID, new_taskName, float_avg_edit, float_total_edit, c2t_ID, float_weight);
+
 		    	}else{
-		    		showInValidInputMessage();
-		    		tds1.createTask(newID, "Incomplete", 0, 100, 0);
+		    		showInValidInputMessage();	
 		    	}
 		    	tds1.close();	
 		    	//Call to update the list view
@@ -122,7 +121,6 @@ public class TaskActivity extends ActionBarActivity {
 		
 		alertDialog.show();
 
-		
 	}
 
 	private void setup_adapter(){

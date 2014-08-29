@@ -16,20 +16,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/taskname_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textviewtask_dialog"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:hint="Task name" >
-
-        <requestFocus />
-    </EditText>
-
     <TextView
         android:id="@+id/viewdiagonal_dialog"
         android:layout_width="wrap_content"
@@ -60,7 +46,34 @@
         android:layout_marginTop="33dp"
         android:ems="10"
         android:gravity="left"
-        android:hint="Average"
-        android:inputType="numberDecimal" />
+        android:hint="Your Grade"
+        android:inputType="numberDecimal"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/taskname_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textviewtask_dialog"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="Task name" />
+
+    <EditText
+        android:id="@+id/weight_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/total_dialog"
+        android:layout_marginTop="21dp"
+        android:ems="50"
+        android:gravity="center"
+        android:hint="Weight of Task (%)"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout> 

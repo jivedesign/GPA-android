@@ -96,14 +96,7 @@ public class CourseDataSource {
 		  return newID;
 
 	  }
-	  
-	  /**
-	   * 
-	   * Change to account for grade column 
-	   * 
-	   * @param semID
-	   * @return
-	   */
+
 	  
 	  public List<Course> getCoursesfromSem (int semID){
 		  
@@ -144,33 +137,14 @@ public class CourseDataSource {
 		  cursor.close();
 		  return grade;
 	  }
-	  
-	  
+
 	  
 	  public float getCourseGradefromTasks (int courseID, TaskDataSource tds) {
 		  float course_grade = 0;
 		  		  
 		  String query = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
 				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
-		  
-//		  
-//		 List<Course> c = getAllCourses();
-//		 
-//		 int i = c.size();
-//		 
-//		 for (int j =0; j<i; j++ ){
-//			 
-//			 Log.d("update", " BEFORE cName: " + c.get(j).getName() + " cID: " + Integer.toString(c.get(j).getID() )
-//					 + " cGrade: " + Float.toString(c.get(j).getMark()));
-//
-//		 }
-//		  
-		  
-		  
-		  
-		  
-		  
-		  
+
 		  
 		  Cursor cursor = database.rawQuery(query, null);
 		  

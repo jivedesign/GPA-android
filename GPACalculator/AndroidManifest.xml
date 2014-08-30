@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>  
         </activity>
-        <activity android:name="CourseActivity"></activity>
-        <activity android:name="SemesterActivity"></activity>
+        <activity android:name="CourseActivity" android:label="Select a Course" ></activity>
+        <activity android:name="SemesterActivity" android:label="Select a Semester" ></activity>
         
     </application>
 

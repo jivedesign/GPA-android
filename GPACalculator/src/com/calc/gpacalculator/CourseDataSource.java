@@ -153,18 +153,18 @@ public class CourseDataSource {
 		  String query = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
 				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
 		  
-		  
-		 List<Course> c = getAllCourses();
-		 
-		 int i = c.size();
-		 
-		 for (int j =0; j<i; j++ ){
-			 
-			 Log.d("update", " BEFORE cName: " + c.get(j).getName() + " cID: " + Integer.toString(c.get(j).getID() )
-					 + " cGrade: " + Float.toString(c.get(j).getMark()));
-
-		 }
-		  
+//		  
+//		 List<Course> c = getAllCourses();
+//		 
+//		 int i = c.size();
+//		 
+//		 for (int j =0; j<i; j++ ){
+//			 
+//			 Log.d("update", " BEFORE cName: " + c.get(j).getName() + " cID: " + Integer.toString(c.get(j).getID() )
+//					 + " cGrade: " + Float.toString(c.get(j).getMark()));
+//
+//		 }
+//		  
 		  
 		  
 		  
@@ -179,45 +179,41 @@ public class CourseDataSource {
 			  int taskID = cursor.getInt(0); 					  
 			  float weighted_course_grade = tds.getTaskGrade(taskID);
 			  course_grade += weighted_course_grade;
+			  
+			  updateGrade(course_grade, courseID);
+			  
+			  
 			  cursor.moveToNext();
 		  }
 		  
 		  Log.d("marks", "value of course_grade = " + Float.toString(course_grade));
 		  
-		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
-				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
-				  + " WHERE " + MySQLiteHelper.COLUMN_COURSE_ID + " = " + courseID;
+//		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
+//				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
+//				  + " WHERE " + MySQLiteHelper.COLUMN_COURSE_ID + " = " + courseID;
+//
+//		  cursor = database.rawQuery(updateCourseGrade, null);
 		  
-	
-			  
-		  
-		  
-		  
-		  
-		  
-		  
-		  cursor = database.rawQuery(updateCourseGrade, null);
-		  
-	 List<Course> c1 = getAllCourses();
-			 
-			 int i1 = c.size();
-			 
-			 for (int j =0; j<i1; j++ ){
-				 
-				 Log.d("update", " AFTER cName: " + c1.get(j).getName() + " cID: " + Integer.toString(c1.get(j).getID() )
-						 + " cGrade: " + Float.toString(c1.get(j).getMark()));
-
-			 }
+//	 List<Course> c1 = getAllCourses();
+//			 
+//			 int i1 = c.size();
+//			 
+//			 for (int j =0; j<i1; j++ ){
+//				 
+//				 Log.d("update", " AFTER cName: " + c1.get(j).getName() + " cID: " + Integer.toString(c1.get(j).getID() )
+//						 + " cGrade: " + Float.toString(c1.get(j).getMark()));
+//
+//			 }
 		  
 		  
 		  
-		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
-				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
+		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES
+				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE_ID;
 		  
 		  Cursor cursor1 = database.rawQuery(query1, null);
 		  
-		  
-		//  Log.d("marks", "course_grade after update = " + Float.toString(cursor1.getFloat(0)));
+		  cursor1.moveToFirst();
+		  Log.d("update", "course_grade after update = " + Float.toString(cursor1.getFloat(0)));
 		  
 		  
 		  
@@ -225,7 +221,24 @@ public class CourseDataSource {
 		  
 		  
 		  return course_grade;
-	  }  
+	  }
+
+	private boolean updateGrade(float course_grade, int courseID) {
+		
+		ContentValues cv = new ContentValues();
+		cv.put(MySQLiteHelper.COLUMN_COURSE_GRADE, course_grade);
+		
+		int  r = database.update(MySQLiteHelper.TABLE_COURSES, cv, MySQLiteHelper.COLUMN_COURSE_ID + " = " + courseID, null);
+		
+		if (r<1){
+			
+			Log.d("update", "update failed");
+			return false;
+		}
+		return true;
+		
+		
+	}  
 	  
 	 
 }

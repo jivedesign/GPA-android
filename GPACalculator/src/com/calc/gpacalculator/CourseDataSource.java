@@ -187,39 +187,17 @@ public class CourseDataSource {
 		  }
 		  
 		  Log.d("marks", "value of course_grade = " + Float.toString(course_grade));
-		  
-//		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
-//				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
-//				  + " WHERE " + MySQLiteHelper.COLUMN_COURSE_ID + " = " + courseID;
-//
-//		  cursor = database.rawQuery(updateCourseGrade, null);
-		  
-//	 List<Course> c1 = getAllCourses();
-//			 
-//			 int i1 = c.size();
-//			 
-//			 for (int j =0; j<i1; j++ ){
-//				 
-//				 Log.d("update", " AFTER cName: " + c1.get(j).getName() + " cID: " + Integer.toString(c1.get(j).getID() )
-//						 + " cGrade: " + Float.toString(c1.get(j).getMark()));
-//
-//			 }
-		  
-		  
-		  
-		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES
-				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE_ID;
-		  
-		  Cursor cursor1 = database.rawQuery(query1, null);
-		  
-		  cursor1.moveToFirst();
-		  Log.d("update", "course_grade after update = " + Float.toString(cursor1.getFloat(0)));
-		  
-		  
-		  
+
+//		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES
+//				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE_ID;
+//		  
+//		  Cursor cursor1 = database.rawQuery(query1, null);
+//		  
+//		  cursor1.moveToFirst();
+//		  Log.d("update", "course_grade after update = " + Float.toString(cursor1.getFloat(0)));
+
 		  cursor.close();
-		  
-		  
+
 		  return course_grade;
 	  }
 

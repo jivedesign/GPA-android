@@ -127,29 +127,38 @@ public class SemesterDataSource {
 	  public Float getGPAfromCourses(int semId, CourseDataSource cds) {
 		  float semester_grade = 0;
   		  
+		  Log.d("marks", "SDS.java. semID = " + Integer.toString(semId));
+		  
+		  
 		  String query = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES
 				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM2COURSE_ID;
 		  
+
 		  Cursor cursor = database.rawQuery(query, null);
-		  
+
 		  cursor.moveToFirst();
 		  while(!cursor.isAfterLast()){
 			  
-			  Log.d("marks", "cursor value " + cursor.getFloat(0));
+			//  Log.d("marks", "cursor value (ID) " + cursor.getInt(0));
+			  
+			 // semester_grade += cds.getGradefromcID(cursor.getInt(0));
+			  
+			 
+			  
 			  
 			  semester_grade += cursor.getFloat(0);
-			  
+			   Log.d("marks", "value of semester_grade " + Float.toString(semester_grade)); 
 			  //semester_grade = 4;
 			  cursor.moveToNext();
 		  }
 		  
-		  Log.d("marks", "semester_grade = " + Float.toString(semester_grade));
+		 // Log.d("marks", "semester_grade = " + Float.toString(semester_grade));
 		  
-//		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_SEMESTERS
-//				  + " SET " + MySQLiteHelper.COLUMN_SEM_GRADE + " = " + semester_grade
-//				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM_ID;
-//				  		  
-//		  cursor = database.rawQuery(updateCourseGrade, null);
+		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_SEMESTERS
+				  + " SET " + MySQLiteHelper.COLUMN_SEM_GRADE + " = " + semester_grade
+				  + " WHERE " + semId + " = " + MySQLiteHelper.COLUMN_SEM_ID;
+				  		  
+		  cursor = database.rawQuery(updateCourseGrade, null);
 		  
 		  cursor.close();
 		  

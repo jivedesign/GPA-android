@@ -116,6 +116,7 @@ public class CourseDataSource {
 		  Log.d("database", "QUERY = " + query);
 		  
 		  
+		  
 		  Cursor cursor = database.rawQuery(query, null);
 		  
 		  cursor.moveToFirst();
@@ -128,12 +129,48 @@ public class CourseDataSource {
 		  return course_list;
 	  }
 	  
+	  public float getGradefromcID (int cID){
+		  
+		  float grade = 0;
+		  
+		  String query = "SELECT " + MySQLiteHelper.COLUMN_COURSE_GRADE + " FROM " + MySQLiteHelper.TABLE_COURSES 
+				  		+ " WHERE " + cID + " = " + MySQLiteHelper.COLUMN_COURSE_ID ; 
+		  
+		  Cursor cursor = database.rawQuery(query, null);
+		  
+		  cursor.moveToFirst();
+		  
+		  grade = cursor.getFloat(0);
+		  cursor.close();
+		  return grade;
+	  }
+	  
+	  
 	  
 	  public float getCourseGradefromTasks (int courseID, TaskDataSource tds) {
 		  float course_grade = 0;
 		  		  
 		  String query = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
 				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;
+		  
+		  
+		 List<Course> c = getAllCourses();
+		 
+		 int i = c.size();
+		 
+		 for (int j =0; j<i; j++ ){
+			 
+			 Log.d("update", " BEFORE cName: " + c.get(j).getName() + " cID: " + Integer.toString(c.get(j).getID() )
+					 + " cGrade: " + Float.toString(c.get(j).getMark()));
+
+		 }
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 		  Cursor cursor = database.rawQuery(query, null);
 		  
@@ -149,9 +186,30 @@ public class CourseDataSource {
 		  
 		  String updateCourseGrade = "UPDATE " + MySQLiteHelper.TABLE_COURSES
 				  + " SET " + MySQLiteHelper.COLUMN_COURSE_GRADE + " = " + course_grade
-				  + " WHERE " + MySQLiteHelper.COLUMN_SEM2COURSE_ID + " = " + courseID;
-				  		
+				  + " WHERE " + MySQLiteHelper.COLUMN_COURSE_ID + " = " + courseID;
+		  
+	
+			  
+		  
+		  
+		  
+		  
+		  
+		  
 		  cursor = database.rawQuery(updateCourseGrade, null);
+		  
+	 List<Course> c1 = getAllCourses();
+			 
+			 int i1 = c.size();
+			 
+			 for (int j =0; j<i1; j++ ){
+				 
+				 Log.d("update", " AFTER cName: " + c1.get(j).getName() + " cID: " + Integer.toString(c1.get(j).getID() )
+						 + " cGrade: " + Float.toString(c1.get(j).getMark()));
+
+			 }
+		  
+		  
 		  
 		  String query1 = "SELECT " + MySQLiteHelper.COLUMN_ID + " FROM " + MySQLiteHelper.TABLE_TASKS
 				  + " WHERE " + courseID + " = " + MySQLiteHelper.COLUMN_COURSE2TASK_ID;

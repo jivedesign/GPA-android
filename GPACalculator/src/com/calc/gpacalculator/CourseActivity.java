@@ -166,8 +166,11 @@ private void setup_adapter(){
 		
 		int i = courses_fromDB.size();
 		for (int j = 0; j<i; j++){
-
+			
 			course_mark = cds.getCourseGradefromTasks(courses_fromDB.get(j).getID(), tds);
+			
+			Log.d("marks", "Cactivity. s2c_ID = " + Integer.toString(courses_fromDB.get(j).getSem2course()));
+			
 			courses_fromDB.get(j).setMark(course_mark);
 
 		}
@@ -178,7 +181,8 @@ private void setup_adapter(){
 		
 		activity_courseview.setAdapter(adapter);
 		
-
+		cds.close();
+		tds.close();
 		activity_courseview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -191,6 +195,8 @@ private void setup_adapter(){
 				
 				Intent i = new Intent(getApplicationContext(), TaskActivity.class);
 				i.putExtra("cID",c.getID());
+				
+				
 				startActivity(i);
 				
 			}

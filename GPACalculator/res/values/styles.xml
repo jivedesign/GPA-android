@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -15,6 +15,39 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    
+    <style name="style_activity_main_body">
+        <item name="android:background">#008CFF</item>
+        
+    </style>
+    <style name="style_activity">
+    	<item name="android:background">#0058A1</item>
+        
+        
+    </style>
+    
+    
+    
+    <style name="style_task_entity_body">
+    	<item name="android:background">#008CFF</item>
+        
+        
+    </style>
+    
+    
+    
+    <style name="style_course_entity_body">
+    	<item name="android:background">#008CFF</item>
+        
+        
+    </style>
+    
+    <style name="style_sem_entity_body">
+    	<item name="android:background">#008CFF</item>
+        
+        
     </style>
 
 </resources>

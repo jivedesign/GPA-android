@@ -3,7 +3,8 @@
     android:id="@+id/RelativeLayout01" 
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    style="@style/style_course_entity_body">
 
     <TextView
         android:id="@+id/course_nameedit"

@@ -7,7 +7,8 @@
     android:focusable="false"
     android:focusableInTouchMode="false"
     android:longClickable="false"
-    tools:context="view.MainActivity" >
+    tools:context="view.MainActivity" 
+    style="@style/style_activity">
 
     <ListView
         android:id="@+id/view_courseActivity"

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CourseActivity extends ActionBarActivity {
@@ -44,7 +46,8 @@ public class CourseActivity extends ActionBarActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.course_activity); 
 	    course_listview = (ListView) findViewById(R.id.view_courseActivity);
-		
+	
+	    
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null) {
 	        s2c_ID = extras.getInt("sID");

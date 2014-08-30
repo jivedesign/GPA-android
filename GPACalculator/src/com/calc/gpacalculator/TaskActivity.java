@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -44,6 +45,10 @@ public class TaskActivity extends ActionBarActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.task_activity);
+	    
+	    //TextView myTextView=(TextView)findViewById(R.id.task_nameedit);
+	    //Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/RobotoCondensed-Light.ttf");
+	    //myTextView.setTypeface(typeFace);
 	    
 	    Bundle extras = getIntent().getExtras();
 	    if (extras != null) {
